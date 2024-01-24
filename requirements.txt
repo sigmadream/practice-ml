@@ -1,0 +1,12 @@
+scikit-learn
+pandas
+seaborn
+jupyterlab
+notebook
+koreanize_matplotlib
+imageio
+mlxtend
+catboost
+xgboost
+lightgbm
+missingno
