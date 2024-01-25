@@ -1,0 +1,2282 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ML - KOSPI와 연관된 지수는?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Appendix01.html">Practice</a></li><li class="breadcrumb-item"><a href="./Appendix02.html">KOSPI와 연관된 지수는?</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">ML</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ML01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">소개(Overview)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ML02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">지도 학습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ML03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">비지도학습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ML05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">모델 평가와 성능 향상</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
+ <span class="menu-text">Practice</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Appendix01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">다양한 모델로 살펴보는 캘리포니아 집값 예측(회귀)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Appendix02.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">KOSPI와 연관된 지수는?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Appendix03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">타이타닉 생존자 예측</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Appendix04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">타이타닉 v2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#kospi와-연관된-지수는" id="toc-kospi와-연관된-지수는" class="nav-link active" data-scroll-target="#kospi와-연관된-지수는">KOSPI와 연관된 지수는?</a>
+  <ul class="collapse">
+  <li><a href="#세계-각국의-지수들-관련-데이터-불러오기" id="toc-세계-각국의-지수들-관련-데이터-불러오기" class="nav-link" data-scroll-target="#세계-각국의-지수들-관련-데이터-불러오기">세계 각국의 지수들 관련 데이터 불러오기</a>
+  <ul class="collapse">
+  <li><a href="#kospi" id="toc-kospi" class="nav-link" data-scroll-target="#kospi">KOSPI</a></li>
+  <li><a href="#nasdaq" id="toc-nasdaq" class="nav-link" data-scroll-target="#nasdaq">Nasdaq</a></li>
+  <li><a href="#sp" id="toc-sp" class="nav-link" data-scroll-target="#sp">S&amp;P</a></li>
+  <li><a href="#미국-10년-국채" id="toc-미국-10년-국채" class="nav-link" data-scroll-target="#미국-10년-국채">미국 10년 국채</a></li>
+  <li><a href="#nikkei" id="toc-nikkei" class="nav-link" data-scroll-target="#nikkei">Nikkei</a></li>
+  </ul></li>
+  <li><a href="#데이터-병합" id="toc-데이터-병합" class="nav-link" data-scroll-target="#데이터-병합">데이터 병합</a></li>
+  <li><a href="#군집분석" id="toc-군집분석" class="nav-link" data-scroll-target="#군집분석">군집분석</a></li>
+  <li><a href="#k_means-를-사용하여-군집을-분류하였습니다." id="toc-k_means-를-사용하여-군집을-분류하였습니다." class="nav-link" data-scroll-target="#k_means-를-사용하여-군집을-분류하였습니다.">K_Means 를 사용하여 군집을 분류하였습니다.</a>
+  <ul class="collapse">
+  <li><a href="#n-34일때-최적의-분류를-확인" id="toc-n-34일때-최적의-분류를-확인" class="nav-link" data-scroll-target="#n-34일때-최적의-분류를-확인"><span class="math inline">\(N\)</span> = <span class="math inline">\(\{3,4\}\)</span>일때 최적의 분류를 확인</a></li>
+  <li><a href="#n-3로-군집분석-진행" id="toc-n-3로-군집분석-진행" class="nav-link" data-scroll-target="#n-3로-군집분석-진행"><span class="math inline">\(N\)</span> = <span class="math inline">\(3\)</span>로 군집분석 진행</a></li>
+  <li><a href="#tsne를-통한-차원축소-진행" id="toc-tsne를-통한-차원축소-진행" class="nav-link" data-scroll-target="#tsne를-통한-차원축소-진행">TSNE를 통한 차원축소 진행</a></li>
+  <li><a href="#군집분석-결과-시각화" id="toc-군집분석-결과-시각화" class="nav-link" data-scroll-target="#군집분석-결과-시각화">군집분석 결과 시각화</a></li>
+  <li><a href="#군집분석-결과에-따른-군집들을-새로운-데이터-프레임으로-생성" id="toc-군집분석-결과에-따른-군집들을-새로운-데이터-프레임으로-생성" class="nav-link" data-scroll-target="#군집분석-결과에-따른-군집들을-새로운-데이터-프레임으로-생성">군집분석 결과에 따른 군집들을 새로운 데이터 프레임으로 생성</a></li>
+  <li><a href="#군집별-수익률-확인" id="toc-군집별-수익률-확인" class="nav-link" data-scroll-target="#군집별-수익률-확인">군집별 수익률 확인</a></li>
+  <li><a href="#군집별-수익률-대비-risk-시각화" id="toc-군집별-수익률-대비-risk-시각화" class="nav-link" data-scroll-target="#군집별-수익률-대비-risk-시각화">군집별 수익률 대비 risk 시각화</a></li>
+  </ul></li>
+  <li><a href="#상관관계-분석" id="toc-상관관계-분석" class="nav-link" data-scroll-target="#상관관계-분석">상관관계 분석</a>
+  <ul class="collapse">
+  <li><a href="#히트맵" id="toc-히트맵" class="nav-link" data-scroll-target="#히트맵">히트맵</a></li>
+  <li><a href="#상관관계-계수-확인하기" id="toc-상관관계-계수-확인하기" class="nav-link" data-scroll-target="#상관관계-계수-확인하기">상관관계 계수 확인하기</a></li>
+  <li><a href="#산점도-그래프" id="toc-산점도-그래프" class="nav-link" data-scroll-target="#산점도-그래프">산점도 그래프</a></li>
+  </ul></li>
+  <li><a href="#세계-각국-지수의-수익률-대비-risk-시각화" id="toc-세계-각국-지수의-수익률-대비-risk-시각화" class="nav-link" data-scroll-target="#세계-각국-지수의-수익률-대비-risk-시각화">세계 각국 지수의 수익률 대비 risk 시각화</a>
+  <ul class="collapse">
+  <li><a href="#평균수익률-및-표준편차" id="toc-평균수익률-및-표준편차" class="nav-link" data-scroll-target="#평균수익률-및-표준편차">평균수익률 및 표준편차</a></li>
+  <li><a href="#누적수익률-및-표준편차" id="toc-누적수익률-및-표준편차" class="nav-link" data-scroll-target="#누적수익률-및-표준편차">누적수익률 및 표준편차</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Appendix01.html">Practice</a></li><li class="breadcrumb-item"><a href="./Appendix02.html">KOSPI와 연관된 지수는?</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">KOSPI와 연관된 지수는?</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="kospi와-연관된-지수는" class="level1">
+<h1>KOSPI와 연관된 지수는?</h1>
+<div id="b31460b7" class="cell" data-outputid="cabf83e1-7172-4fc6-ae14-11c9874bac85" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> koreanize_matplotlib</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> DBSCAN</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> FinanceDataReader <span class="im">as</span> fdr</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cvxopt <span class="im">as</span> opt</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cvxopt <span class="im">import</span> solvers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="세계-각국의-지수들-관련-데이터-불러오기" class="level2">
+<h2 class="anchored" data-anchor-id="세계-각국의-지수들-관련-데이터-불러오기">세계 각국의 지수들 관련 데이터 불러오기</h2>
+<section id="kospi" class="level3">
+<h3 class="anchored" data-anchor-id="kospi">KOSPI</h3>
+<ul>
+<li>change(수익률)에 * 100을 해서 %수치로 보이기 편하게 수정하였고, Open(시가), High(고가), Close(종가), Volume(거래량)을 제거</li>
+</ul>
+<div id="5e3d7603" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>kospi <span class="op">=</span> fdr.DataReader(<span class="st">'KS11'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>kospi[<span class="st">'Change'</span>] <span class="op">=</span> kospi[<span class="st">'Change'</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>kospi <span class="op">=</span> kospi.drop([<span class="st">'Open'</span>, <span class="st">'High'</span>, <span class="st">'Low'</span>, <span class="st">'Close'</span>, <span class="st">'Volume'</span>, <span class="st">'UpDown'</span>, <span class="st">'Comp'</span>, <span class="st">'Amount'</span>, <span class="st">'MarCap'</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>kospi.rename(columns <span class="op">=</span> {<span class="st">'Change'</span>:<span class="st">'KOSPI'</span>},inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>kospi.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">KOSPI</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-11</td>
+<td>-2.18</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-12</td>
+<td>-0.18</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-13</td>
+<td>1.14</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-14</td>
+<td>-0.05</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-15</td>
+<td>0.85</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="nasdaq" class="level3">
+<h3 class="anchored" data-anchor-id="nasdaq">Nasdaq</h3>
+<div id="1751669c" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nasdaq <span class="op">=</span> fdr.DataReader(<span class="st">'IXIC'</span>, <span class="st">'2001-06-08'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>nasdaq[<span class="st">'Change'</span>] <span class="op">=</span> <span class="bu">round</span>(nasdaq[<span class="st">'Adj Close'</span>].pct_change() <span class="op">*</span><span class="dv">100</span>, <span class="dv">2</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>nasdaq <span class="op">=</span> nasdaq.drop([<span class="st">'High'</span>, <span class="st">'Low'</span>, <span class="st">'Open'</span>, <span class="st">'Close'</span>, <span class="st">'Volume'</span>, <span class="st">'Adj Close'</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>nasdaq <span class="op">=</span> nasdaq.drop(<span class="st">'2001-06-08'</span>, axis <span class="op">=</span> <span class="dv">0</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>nasdaq.rename(columns <span class="op">=</span> {<span class="st">'Change'</span>:<span class="st">'NASDAQ'</span>},inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>nasdaq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">NASDAQ</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-11</td>
+<td>-2.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-12</td>
+<td>-0.04</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-13</td>
+<td>-2.23</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-14</td>
+<td>-3.66</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-15</td>
+<td>-0.77</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-17</td>
+<td>-0.59</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2024-01-18</td>
+<td>1.35</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-19</td>
+<td>1.70</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2024-01-22</td>
+<td>0.32</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-23</td>
+<td>0.43</td>
+</tr>
+</tbody>
+</table>
+
+<p>5690 rows × 1 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sp" class="level3">
+<h3 class="anchored" data-anchor-id="sp">S&amp;P</h3>
+<div id="2163709f" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sap <span class="op">=</span> fdr.DataReader(<span class="st">'S&amp;P500'</span>, <span class="st">'2001-06-08'</span>, <span class="st">'2024-01-23'</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sap[<span class="st">'Change'</span>] <span class="op">=</span> <span class="bu">round</span>(sap[<span class="st">'Adj Close'</span>].pct_change() <span class="op">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sap <span class="op">=</span> sap.drop([<span class="st">'High'</span>, <span class="st">'Low'</span>, <span class="st">'Open'</span>, <span class="st">'Close'</span>, <span class="st">'Volume'</span>, <span class="st">'Adj Close'</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>sap <span class="op">=</span> sap.drop(<span class="st">'2001-06-08'</span>, axis <span class="op">=</span> <span class="dv">0</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>sap.rename(columns <span class="op">=</span> {<span class="st">'Change'</span>:<span class="st">'S&amp;P'</span>},inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>sap.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">S&amp;P</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-11</td>
+<td>-0.84</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-12</td>
+<td>0.12</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-13</td>
+<td>-1.13</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-14</td>
+<td>-1.75</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-15</td>
+<td>-0.45</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="미국-10년-국채" class="level3">
+<h3 class="anchored" data-anchor-id="미국-10년-국채">미국 10년 국채</h3>
+<div id="82820835" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>usa_treasury <span class="op">=</span> fdr.DataReader(<span class="st">'US10YT'</span>, <span class="st">'2001-06-08'</span>, <span class="st">'2024-01-23'</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>usa_treasury[<span class="st">'Change'</span>] <span class="op">=</span> <span class="bu">round</span>(usa_treasury[<span class="st">'Adj Close'</span>].pct_change() <span class="op">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>usa_treasury <span class="op">=</span> usa_treasury.drop([<span class="st">'High'</span>, <span class="st">'Low'</span>, <span class="st">'Open'</span>, <span class="st">'Close'</span>, <span class="st">'Volume'</span>, <span class="st">'Adj Close'</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>usa_treasury <span class="op">=</span> usa_treasury.drop(<span class="st">'2001-06-08'</span>, axis <span class="op">=</span> <span class="dv">0</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>usa_treasury <span class="op">=</span> usa_treasury.rename(columns <span class="op">=</span> {<span class="st">'Change'</span>:<span class="st">'USA_TREASURY'</span>})</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>usa_treasury</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\sigma\AppData\Local\Temp\ipykernel_19212\2197024751.py:2: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  usa_treasury['Change'] = round(usa_treasury['Adj Close'].pct_change() * 100, 2)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">USA_TREASURY</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-10</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-11</td>
+<td>-0.86</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-12</td>
+<td>-0.89</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-13</td>
+<td>0.32</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-14</td>
+<td>-0.80</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-17</td>
+<td>0.98</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2024-01-18</td>
+<td>0.93</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-19</td>
+<td>0.05</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2024-01-21</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-22</td>
+<td>-1.25</td>
+</tr>
+</tbody>
+</table>
+
+<p>6929 rows × 1 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="nikkei" class="level3">
+<h3 class="anchored" data-anchor-id="nikkei">Nikkei</h3>
+<div id="343fd846" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>japan <span class="op">=</span> fdr.DataReader(<span class="st">'N225'</span>, <span class="st">'2001-06-08'</span>, <span class="st">'2024-01-23'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>japan[<span class="st">'Change'</span>] <span class="op">=</span> <span class="bu">round</span>(japan[<span class="st">'Adj Close'</span>].pct_change() <span class="op">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>japan <span class="op">=</span> japan.drop([<span class="st">'High'</span>, <span class="st">'Low'</span>, <span class="st">'Open'</span>, <span class="st">'Close'</span>, <span class="st">'Volume'</span>, <span class="st">'Adj Close'</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>japan <span class="op">=</span> japan.drop(<span class="st">'2001-06-08'</span>, axis <span class="op">=</span> <span class="dv">0</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>japan.rename(columns <span class="op">=</span> {<span class="st">'Change'</span>:<span class="st">'Nikkei'</span>},inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>japan</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\sigma\AppData\Local\Temp\ipykernel_19212\3872993107.py:2: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  japan['Change'] = round(japan['Adj Close'].pct_change() * 100, 2)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Nikkei</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-11</td>
+<td>-1.52</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-12</td>
+<td>-2.92</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-13</td>
+<td>-0.13</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-14</td>
+<td>0.18</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-15</td>
+<td>-0.44</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-16</td>
+<td>-0.79</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2024-01-17</td>
+<td>-0.40</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-18</td>
+<td>-0.03</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2024-01-19</td>
+<td>1.40</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-22</td>
+<td>1.62</td>
+</tr>
+</tbody>
+</table>
+
+<p>5641 rows × 1 columns</p>
+</div>
+</div>
+</div>
+<div id="c451def4" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>usd_krw <span class="op">=</span> fdr.DataReader(<span class="st">'USD/KRW'</span>, <span class="st">'2001-06-08'</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>usd_krw[<span class="st">'Change'</span>] <span class="op">=</span> <span class="bu">round</span>(usd_krw[<span class="st">'Adj Close'</span>].pct_change() <span class="op">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>usd_krw <span class="op">=</span> usd_krw.drop([<span class="st">'High'</span>, <span class="st">'Low'</span>, <span class="st">'Open'</span>, <span class="st">'Close'</span>, <span class="st">'Volume'</span>, <span class="st">'Adj Close'</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>usd_krw <span class="op">=</span> usd_krw.rename(columns <span class="op">=</span> {<span class="st">'Change'</span>:<span class="st">'USD/KRW'</span>})</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>usd_krw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\sigma\AppData\Local\Temp\ipykernel_19212\4191296131.py:2: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  usd_krw['Change'] = round(usd_krw['Adj Close'].pct_change() * 100, 2)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">USD/KRW</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2003-12-01</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2003-12-02</td>
+<td>-0.28</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2003-12-03</td>
+<td>-0.21</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2003-12-04</td>
+<td>-0.20</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2003-12-05</td>
+<td>-0.45</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-18</td>
+<td>0.47</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2024-01-19</td>
+<td>-0.48</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-22</td>
+<td>-0.33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2024-01-23</td>
+<td>0.41</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-24</td>
+<td>-0.32</td>
+</tr>
+</tbody>
+</table>
+
+<p>5258 rows × 1 columns</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="데이터-병합" class="level2">
+<h2 class="anchored" data-anchor-id="데이터-병합">데이터 병합</h2>
+<p>각 지수들 및 환율 국채를 합쳐줍니다. 결측치는 평균으로 대체하였습니다.</p>
+<div id="14c71d5a" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>result_data <span class="op">=</span> pd.concat([kospi, nasdaq, sap, usd_krw, usa_treasury, japan], axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>result_data.fillna(result_data.mean(), inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>result_data <span class="op">=</span> <span class="bu">round</span>(result_data, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">KOSPI</th>
+<th data-quarto-table-cell-role="th">NASDAQ</th>
+<th data-quarto-table-cell-role="th">S&amp;P</th>
+<th data-quarto-table-cell-role="th">USD/KRW</th>
+<th data-quarto-table-cell-role="th">USA_TREASURY</th>
+<th data-quarto-table-cell-role="th">Nikkei</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-11</td>
+<td>-2.18</td>
+<td>-2.00</td>
+<td>-0.84</td>
+<td>0.01</td>
+<td>-0.86</td>
+<td>-1.52</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-12</td>
+<td>-0.18</td>
+<td>-0.04</td>
+<td>0.12</td>
+<td>0.01</td>
+<td>-0.89</td>
+<td>-2.92</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-13</td>
+<td>1.14</td>
+<td>-2.23</td>
+<td>-1.13</td>
+<td>0.01</td>
+<td>0.32</td>
+<td>-0.13</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-14</td>
+<td>-0.05</td>
+<td>-3.66</td>
+<td>-1.75</td>
+<td>0.01</td>
+<td>-0.80</td>
+<td>0.18</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-15</td>
+<td>0.85</td>
+<td>-0.77</td>
+<td>-0.45</td>
+<td>0.01</td>
+<td>0.25</td>
+<td>-0.44</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2023-12-24</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.03</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2023-12-31</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.03</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-07</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.03</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2024-01-14</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.03</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-21</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.03</td>
+</tr>
+</tbody>
+</table>
+
+<p>7084 rows × 6 columns</p>
+</div>
+</div>
+</div>
+<div id="3b28cbcb" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>result_data.to_csv(<span class="st">'./data/kospi_result_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="군집분석" class="level2">
+<h2 class="anchored" data-anchor-id="군집분석">군집분석</h2>
+</section>
+<section id="k_means-를-사용하여-군집을-분류하였습니다." class="level2">
+<h2 class="anchored" data-anchor-id="k_means-를-사용하여-군집을-분류하였습니다.">K_Means 를 사용하여 군집을 분류하였습니다.</h2>
+<ul>
+<li>kospi 를 target으로 설정하였습니다</li>
+</ul>
+<div id="20c5d523" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> result_data[[<span class="st">"NASDAQ"</span>,<span class="st">"S&amp;P"</span>,<span class="st">"USD/KRW"</span>,<span class="st">"USA_TREASURY"</span>,<span class="st">"Nikkei"</span>]]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> result_data[<span class="st">"KOSPI"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="n-34일때-최적의-분류를-확인" class="level3">
+<h3 class="anchored" data-anchor-id="n-34일때-최적의-분류를-확인"><span class="math inline">\(N\)</span> = <span class="math inline">\(\{3,4\}\)</span>일때 최적의 분류를 확인</h3>
+<div id="fee171ef" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ks <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">10</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>inertias <span class="op">=</span> []</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> ks:</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>k,random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    model.fit(X)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    inertias.append(model.inertia_)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>plt.plot(ks, inertias, <span class="st">'-o'</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'number of clusters, k'</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'inertia'</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>plt.xticks(ks)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>plt.show() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Appendix02_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="n-3로-군집분석-진행" class="level3">
+<h3 class="anchored" data-anchor-id="n-3로-군집분석-진행"><span class="math inline">\(N\)</span> = <span class="math inline">\(3\)</span>로 군집분석 진행</h3>
+<div id="29c4fc32" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>n_clusters <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>n_clusters,random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>kmeans.fit(X)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>y_kmeans <span class="op">=</span> kmeans.predict(X)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>y_kmeans[<span class="dv">1</span>:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>array([2, 2, 1, 2, 2, 2, 2, 2, 1])</code></pre>
+</div>
+</div>
+</section>
+<section id="tsne를-통한-차원축소-진행" class="level3">
+<h3 class="anchored" data-anchor-id="tsne를-통한-차원축소-진행">TSNE를 통한 차원축소 진행</h3>
+<div id="9c846fd5" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>n_sne <span class="op">=</span> X.shape[<span class="dv">0</span>]</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>time_start <span class="op">=</span> time.time()</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>tsne <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">2</span>, verbose<span class="op">=</span><span class="dv">1</span>, perplexity<span class="op">=</span><span class="dv">32</span>, n_iter<span class="op">=</span><span class="dv">1000</span>,random_state<span class="op">=</span><span class="dv">0</span>,angle<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>tsne_results <span class="op">=</span> tsne.fit_transform(X)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( <span class="st">'t-SNE done! Time elapsed: </span><span class="sc">{}</span><span class="st"> seconds'</span>.<span class="bu">format</span>(time.time() <span class="op">-</span> time_start ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[t-SNE] Computing 97 nearest neighbors...
+[t-SNE] Indexed 7084 samples in 0.004s...
+[t-SNE] Computed neighbors for 7084 samples in 0.174s...
+[t-SNE] Computed conditional probabilities for sample 1000 / 7084
+[t-SNE] Computed conditional probabilities for sample 2000 / 7084
+[t-SNE] Computed conditional probabilities for sample 3000 / 7084
+[t-SNE] Computed conditional probabilities for sample 4000 / 7084
+[t-SNE] Computed conditional probabilities for sample 5000 / 7084
+[t-SNE] Computed conditional probabilities for sample 6000 / 7084
+[t-SNE] Computed conditional probabilities for sample 7000 / 7084
+[t-SNE] Computed conditional probabilities for sample 7084 / 7084
+[t-SNE] Mean sigma: 0.000000
+[t-SNE] KL divergence after 250 iterations with early exaggeration: 77.894424
+[t-SNE] KL divergence after 1000 iterations: 1.677709
+t-SNE done! Time elapsed: 11.359419584274292 seconds</code></pre>
+</div>
+</div>
+</section>
+<section id="군집분석-결과-시각화" class="level3">
+<h3 class="anchored" data-anchor-id="군집분석-결과-시각화">군집분석 결과 시각화</h3>
+<div id="e27e6aad" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(tsne_results[:,<span class="dv">0</span>], tsne_results[:,<span class="dv">1</span>], c<span class="op">=</span>y_kmeans, s<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'bwr'</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>tsne_results[:,<span class="dv">0</span>], y<span class="op">=</span>tsne_results[:,<span class="dv">1</span>], hue<span class="op">=</span>y_kmeans, palette<span class="op">=</span><span class="st">'bwr'</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Appendix02_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="69e7a2ef" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> result_data.copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="079eb23e" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df1[<span class="st">'cluster'</span>] <span class="op">=</span> y_kmeans</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">KOSPI</th>
+<th data-quarto-table-cell-role="th">NASDAQ</th>
+<th data-quarto-table-cell-role="th">S&amp;P</th>
+<th data-quarto-table-cell-role="th">USD/KRW</th>
+<th data-quarto-table-cell-role="th">USA_TREASURY</th>
+<th data-quarto-table-cell-role="th">Nikkei</th>
+<th data-quarto-table-cell-role="th">cluster</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-11</td>
+<td>-2.18</td>
+<td>-2.00</td>
+<td>-0.84</td>
+<td>0.01</td>
+<td>-0.86</td>
+<td>-1.52</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-12</td>
+<td>-0.18</td>
+<td>-0.04</td>
+<td>0.12</td>
+<td>0.01</td>
+<td>-0.89</td>
+<td>-2.92</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-13</td>
+<td>1.14</td>
+<td>-2.23</td>
+<td>-1.13</td>
+<td>0.01</td>
+<td>0.32</td>
+<td>-0.13</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-14</td>
+<td>-0.05</td>
+<td>-3.66</td>
+<td>-1.75</td>
+<td>0.01</td>
+<td>-0.80</td>
+<td>0.18</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-15</td>
+<td>0.85</td>
+<td>-0.77</td>
+<td>-0.45</td>
+<td>0.01</td>
+<td>0.25</td>
+<td>-0.44</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2023-12-24</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.03</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2023-12-31</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.03</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-07</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.03</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2024-01-14</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.03</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-21</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.03</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+<p>7084 rows × 7 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="군집분석-결과에-따른-군집들을-새로운-데이터-프레임으로-생성" class="level3">
+<h3 class="anchored" data-anchor-id="군집분석-결과에-따른-군집들을-새로운-데이터-프레임으로-생성">군집분석 결과에 따른 군집들을 새로운 데이터 프레임으로 생성</h3>
+<div id="2eccf2de" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 군집 0 ~ 3 까지 분류된거를 변수명에 추가</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>cluster_2 <span class="op">=</span> df1[df1[<span class="st">'cluster'</span>]<span class="op">==</span><span class="dv">2</span>]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>cluster_1 <span class="op">=</span> df1[df1[<span class="st">'cluster'</span>]<span class="op">==</span><span class="dv">1</span>]</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>cluster_0 <span class="op">=</span> df1[df1[<span class="st">'cluster'</span>]<span class="op">==</span><span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cecd9359" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>cluster_0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">KOSPI</th>
+<th data-quarto-table-cell-role="th">NASDAQ</th>
+<th data-quarto-table-cell-role="th">S&amp;P</th>
+<th data-quarto-table-cell-role="th">USD/KRW</th>
+<th data-quarto-table-cell-role="th">USA_TREASURY</th>
+<th data-quarto-table-cell-role="th">Nikkei</th>
+<th data-quarto-table-cell-role="th">cluster</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-26</td>
+<td>-1.56</td>
+<td>0.67</td>
+<td>-0.15</td>
+<td>0.01</td>
+<td>1.79</td>
+<td>0.64</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-28</td>
+<td>-0.25</td>
+<td>2.44</td>
+<td>1.25</td>
+<td>0.01</td>
+<td>1.78</td>
+<td>-1.16</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-09-04</td>
+<td>3.13</td>
+<td>-1.92</td>
+<td>-0.06</td>
+<td>0.01</td>
+<td>3.38</td>
+<td>3.49</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-10-11</td>
+<td>2.70</td>
+<td>4.62</td>
+<td>1.52</td>
+<td>0.01</td>
+<td>1.63</td>
+<td>3.83</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-11-02</td>
+<td>1.19</td>
+<td>-0.03</td>
+<td>0.29</td>
+<td>0.01</td>
+<td>3.06</td>
+<td>0.35</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2022-06-06</td>
+<td>0.03</td>
+<td>0.40</td>
+<td>0.31</td>
+<td>0.78</td>
+<td>2.74</td>
+<td>0.56</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2023-05-01</td>
+<td>0.03</td>
+<td>-0.11</td>
+<td>-0.04</td>
+<td>-0.17</td>
+<td>3.53</td>
+<td>0.92</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2023-05-05</td>
+<td>0.03</td>
+<td>2.25</td>
+<td>1.85</td>
+<td>-1.13</td>
+<td>2.83</td>
+<td>0.03</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2023-10-02</td>
+<td>0.03</td>
+<td>0.67</td>
+<td>0.01</td>
+<td>0.30</td>
+<td>2.41</td>
+<td>-0.31</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2023-10-03</td>
+<td>0.03</td>
+<td>-1.87</td>
+<td>-1.37</td>
+<td>0.17</td>
+<td>2.54</td>
+<td>-1.64</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p>995 rows × 7 columns</p>
+</div>
+</div>
+</div>
+<div id="07b9480e" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cluster_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">KOSPI</th>
+<th data-quarto-table-cell-role="th">NASDAQ</th>
+<th data-quarto-table-cell-role="th">S&amp;P</th>
+<th data-quarto-table-cell-role="th">USD/KRW</th>
+<th data-quarto-table-cell-role="th">USA_TREASURY</th>
+<th data-quarto-table-cell-role="th">Nikkei</th>
+<th data-quarto-table-cell-role="th">cluster</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-11</td>
+<td>-2.18</td>
+<td>-2.00</td>
+<td>-0.84</td>
+<td>0.01</td>
+<td>-0.86</td>
+<td>-1.52</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-14</td>
+<td>-0.05</td>
+<td>-3.66</td>
+<td>-1.75</td>
+<td>0.01</td>
+<td>-0.80</td>
+<td>0.18</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-22</td>
+<td>0.60</td>
+<td>-1.16</td>
+<td>-0.95</td>
+<td>0.01</td>
+<td>-1.04</td>
+<td>0.63</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-07-06</td>
+<td>-2.54</td>
+<td>-3.65</td>
+<td>-2.35</td>
+<td>0.01</td>
+<td>-0.70</td>
+<td>-2.39</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-07-10</td>
+<td>-0.25</td>
+<td>-3.15</td>
+<td>-1.44</td>
+<td>0.01</td>
+<td>-1.27</td>
+<td>0.50</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2020-08-17</td>
+<td>0.03</td>
+<td>1.00</td>
+<td>0.27</td>
+<td>0.16</td>
+<td>-3.67</td>
+<td>-0.83</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2021-08-16</td>
+<td>0.03</td>
+<td>-0.20</td>
+<td>0.26</td>
+<td>-0.06</td>
+<td>-3.08</td>
+<td>-1.62</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2021-09-20</td>
+<td>0.03</td>
+<td>-2.19</td>
+<td>-1.70</td>
+<td>0.57</td>
+<td>-4.45</td>
+<td>0.03</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2021-10-04</td>
+<td>0.03</td>
+<td>-2.14</td>
+<td>-1.30</td>
+<td>-0.31</td>
+<td>0.14</td>
+<td>-1.13</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2022-03-01</td>
+<td>0.03</td>
+<td>-1.59</td>
+<td>-1.55</td>
+<td>0.28</td>
+<td>-7.18</td>
+<td>1.20</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<p>1181 rows × 7 columns</p>
+</div>
+</div>
+</div>
+<div id="baf45c95" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cluster_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">KOSPI</th>
+<th data-quarto-table-cell-role="th">NASDAQ</th>
+<th data-quarto-table-cell-role="th">S&amp;P</th>
+<th data-quarto-table-cell-role="th">USD/KRW</th>
+<th data-quarto-table-cell-role="th">USA_TREASURY</th>
+<th data-quarto-table-cell-role="th">Nikkei</th>
+<th data-quarto-table-cell-role="th">cluster</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-12</td>
+<td>-0.18</td>
+<td>-0.04</td>
+<td>0.12</td>
+<td>0.01</td>
+<td>-0.89</td>
+<td>-2.92</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-13</td>
+<td>1.14</td>
+<td>-2.23</td>
+<td>-1.13</td>
+<td>0.01</td>
+<td>0.32</td>
+<td>-0.13</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-15</td>
+<td>0.85</td>
+<td>-0.77</td>
+<td>-0.45</td>
+<td>0.01</td>
+<td>0.25</td>
+<td>-0.44</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2001-06-18</td>
+<td>-1.64</td>
+<td>-1.96</td>
+<td>-0.49</td>
+<td>0.01</td>
+<td>0.25</td>
+<td>-0.72</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2001-06-19</td>
+<td>0.02</td>
+<td>0.20</td>
+<td>0.34</td>
+<td>0.01</td>
+<td>-0.25</td>
+<td>-0.97</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2023-12-24</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.03</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2023-12-31</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.03</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-07</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.03</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2024-01-14</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.03</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-21</td>
+<td>0.03</td>
+<td>0.04</td>
+<td>0.03</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.03</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+<p>4908 rows × 7 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="군집별-수익률-확인" class="level3">
+<h3 class="anchored" data-anchor-id="군집별-수익률-확인">군집별 수익률 확인</h3>
+<ul>
+<li>군집 0 ~ 3 까지의 수익률을 한번 확인</li>
+</ul>
+<div id="bfc6a751" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cluster_total<span class="op">=</span> df1.groupby(<span class="st">'cluster'</span>).mean()</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>cluster_total[<span class="st">'return'</span>] <span class="op">=</span> cluster_total.T.mean()</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>cluster_total[<span class="st">'std'</span>] <span class="op">=</span> cluster_total.T.std()</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>cluster_total <span class="op">=</span> cluster_total.T</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>cluster_total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">cluster</th>
+<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">KOSPI</td>
+<td>0.305276</td>
+<td>-0.370711</td>
+<td>0.074639</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">NASDAQ</td>
+<td>0.798905</td>
+<td>-1.309001</td>
+<td>0.215742</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">S&amp;P</td>
+<td>0.709920</td>
+<td>-1.130449</td>
+<td>0.172653</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">USD/KRW</td>
+<td>-0.014442</td>
+<td>0.094522</td>
+<td>-0.009719</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">USA_TREASURY</td>
+<td>3.434774</td>
+<td>-2.606080</td>
+<td>-0.036925</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Nikkei</td>
+<td>0.363940</td>
+<td>-0.446105</td>
+<td>0.074531</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">return</td>
+<td>0.933062</td>
+<td>-0.961304</td>
+<td>0.081820</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">std</td>
+<td>1.150517</td>
+<td>0.874051</td>
+<td>0.090157</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<ul>
+<li>군집1 : 위험자산 + USA_TREASURY로 이뤄진 군집<br>
+</li>
+<li>군집2 : Dolllar로 이뤄진 군집<br>
+</li>
+<li>군집3 : 위험자산으로 이뤄진 군집</li>
+</ul>
+</section>
+<section id="군집별-수익률-대비-risk-시각화" class="level3">
+<h3 class="anchored" data-anchor-id="군집별-수익률-대비-risk-시각화">군집별 수익률 대비 risk 시각화</h3>
+<div id="3a0ea721" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(cluster_total.std(), cluster_total.mean())</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'risk'</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'return'</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'평균수익률 및 표준편차'</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, x, y <span class="kw">in</span> <span class="bu">zip</span>(cluster_total.columns, cluster_total.std(), cluster_total.mean()):</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    plt.annotate(label, xy<span class="op">=</span>(x, y), xytext<span class="op">=</span>(<span class="dv">30</span>, <span class="op">-</span><span class="dv">30</span>),</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    textcoords <span class="op">=</span> <span class="st">'offset points'</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    ha <span class="op">=</span> <span class="st">'right'</span>, va <span class="op">=</span> <span class="st">'bottom'</span>,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    bbox <span class="op">=</span> <span class="bu">dict</span>(boxstyle <span class="op">=</span> <span class="st">'round,pad=0.5'</span>, fc <span class="op">=</span> <span class="st">'yellow'</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>),</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    arrowprops <span class="op">=</span> <span class="bu">dict</span>(arrowstyle <span class="op">=</span> <span class="st">'-&gt;'</span>, connectionstyle <span class="op">=</span> <span class="st">'arc3,rad=0'</span>))   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Appendix02_files/figure-html/cell-23-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>각 금융자산의 특징과 잘 맞게 군집이 잘 작성되었습니다.</p>
+</section>
+</section>
+<section id="상관관계-분석" class="level2">
+<h2 class="anchored" data-anchor-id="상관관계-분석">상관관계 분석</h2>
+<ul>
+<li>Kospi와 나머지 변수들의 상관관계를 확인</li>
+</ul>
+<section id="히트맵" class="level3">
+<h3 class="anchored" data-anchor-id="히트맵">히트맵</h3>
+<div id="a322c489" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df1.corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ef9056e8" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(result_data.corr(), annot<span class="op">=</span><span class="va">True</span>, fmt <span class="op">=</span> <span class="st">'.2f'</span>, linewidths<span class="op">=</span><span class="fl">.5</span>, cmap<span class="op">=</span><span class="st">'Blues'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Appendix02_files/figure-html/cell-25-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="상관관계-계수-확인하기" class="level3">
+<h3 class="anchored" data-anchor-id="상관관계-계수-확인하기">상관관계 계수 확인하기</h3>
+<ul>
+<li>확실히 Nasdaq과 S&amp;P가 서로 미국시장이라서 상관관계가 높은것을 확인할 수 있고, kospi와의 상관관계는 1.Nikkei &gt; 2. Nasdaq &gt; 3. S&amp;P &gt; 4.usa_treasury &gt; 5.Dollar 순의 상관관계를 보임</li>
+</ul>
+<div id="b42ff38e" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>idx, vals <span class="op">=</span> [], []</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ix, i <span class="kw">in</span> <span class="bu">enumerate</span>(result_data.columns.values):</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> result_data.columns.values[ix <span class="op">+</span> <span class="dv">1</span>:]:</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>        idx.append((i, j))</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        vals.append(result_data.corr()[i][j])</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>ser <span class="op">=</span> pd.Series(data<span class="op">=</span>vals, index<span class="op">=</span>idx)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>ser_ord <span class="op">=</span> ser.sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>ser_ord</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>(NASDAQ, S&amp;P)              0.938377
+(KOSPI, Nikkei)            0.576193
+(S&amp;P, USA_TREASURY)        0.320329
+(NASDAQ, USA_TREASURY)     0.273524
+(KOSPI, S&amp;P)               0.192238
+(KOSPI, NASDAQ)            0.182993
+(S&amp;P, Nikkei)              0.150417
+(NASDAQ, Nikkei)           0.140277
+(KOSPI, USA_TREASURY)      0.113130
+(USA_TREASURY, Nikkei)     0.105009
+(USD/KRW, USA_TREASURY)    0.003050
+(NASDAQ, USD/KRW)         -0.063350
+(S&amp;P, USD/KRW)            -0.083819
+(USD/KRW, Nikkei)         -0.186367
+(KOSPI, USD/KRW)          -0.213704
+dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="산점도-그래프" class="level3">
+<h3 class="anchored" data-anchor-id="산점도-그래프">산점도 그래프</h3>
+<div id="e7063dae" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.1</span>) <span class="co">## 폰트사이즈 조절</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">'ticks'</span>) <span class="co">## 축 눈금 표시</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> result_data[[<span class="st">"KOSPI"</span>, <span class="st">"NASDAQ"</span>,<span class="st">"S&amp;P"</span>,<span class="st">"USD/KRW"</span>,<span class="st">"USA_TREASURY"</span>,<span class="st">"Nikkei"</span>]]</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data,diag_kind<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Appendix02_files/figure-html/cell-27-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="세계-각국-지수의-수익률-대비-risk-시각화" class="level2">
+<h2 class="anchored" data-anchor-id="세계-각국-지수의-수익률-대비-risk-시각화">세계 각국 지수의 수익률 대비 risk 시각화</h2>
+<section id="평균수익률-및-표준편차" class="level3">
+<h3 class="anchored" data-anchor-id="평균수익률-및-표준편차">평균수익률 및 표준편차</h3>
+<div id="0f4065df" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(result_data.std(), result_data.mean())</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'risk'</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'return'</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'평균수익률 및 표준편차'</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, x, y <span class="kw">in</span> <span class="bu">zip</span>(result_data.columns, result_data.std(), result_data.mean()):</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    plt.annotate(label, xy<span class="op">=</span>(x, y), xytext<span class="op">=</span>(<span class="dv">30</span>, <span class="op">-</span><span class="dv">30</span>),</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    textcoords <span class="op">=</span> <span class="st">'offset points'</span>,</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    ha <span class="op">=</span> <span class="st">'right'</span>, va <span class="op">=</span> <span class="st">'bottom'</span>,</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    bbox <span class="op">=</span> <span class="bu">dict</span>(boxstyle <span class="op">=</span> <span class="st">'round,pad=0.5'</span>, fc <span class="op">=</span> <span class="st">'yellow'</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>),</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    arrowprops <span class="op">=</span> <span class="bu">dict</span>(arrowstyle <span class="op">=</span> <span class="st">'-&gt;'</span>, connectionstyle <span class="op">=</span> <span class="st">'arc3,rad=0'</span>))   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\events.py:82: UserWarning: Glyph 54217 (\N{HANGUL SYLLABLE PYEONG}) missing from current font.
+  func(*args, **kwargs)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\events.py:82: UserWarning: Glyph 44512 (\N{HANGUL SYLLABLE GYUN}) missing from current font.
+  func(*args, **kwargs)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\events.py:82: UserWarning: Glyph 49688 (\N{HANGUL SYLLABLE SU}) missing from current font.
+  func(*args, **kwargs)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\events.py:82: UserWarning: Glyph 51061 (\N{HANGUL SYLLABLE IG}) missing from current font.
+  func(*args, **kwargs)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\events.py:82: UserWarning: Glyph 47456 (\N{HANGUL SYLLABLE RYUL}) missing from current font.
+  func(*args, **kwargs)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\events.py:82: UserWarning: Glyph 48143 (\N{HANGUL SYLLABLE MIC}) missing from current font.
+  func(*args, **kwargs)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\events.py:82: UserWarning: Glyph 54364 (\N{HANGUL SYLLABLE PYO}) missing from current font.
+  func(*args, **kwargs)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\events.py:82: UserWarning: Glyph 51456 (\N{HANGUL SYLLABLE JUN}) missing from current font.
+  func(*args, **kwargs)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\events.py:82: UserWarning: Glyph 54200 (\N{HANGUL SYLLABLE PYEON}) missing from current font.
+  func(*args, **kwargs)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\events.py:82: UserWarning: Glyph 52264 (\N{HANGUL SYLLABLE CA}) missing from current font.
+  func(*args, **kwargs)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\pylabtools.py:152: UserWarning: Glyph 54217 (\N{HANGUL SYLLABLE PYEONG}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\pylabtools.py:152: UserWarning: Glyph 44512 (\N{HANGUL SYLLABLE GYUN}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\pylabtools.py:152: UserWarning: Glyph 49688 (\N{HANGUL SYLLABLE SU}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\pylabtools.py:152: UserWarning: Glyph 51061 (\N{HANGUL SYLLABLE IG}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\pylabtools.py:152: UserWarning: Glyph 47456 (\N{HANGUL SYLLABLE RYUL}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\pylabtools.py:152: UserWarning: Glyph 48143 (\N{HANGUL SYLLABLE MIC}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\pylabtools.py:152: UserWarning: Glyph 54364 (\N{HANGUL SYLLABLE PYO}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\pylabtools.py:152: UserWarning: Glyph 51456 (\N{HANGUL SYLLABLE JUN}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\pylabtools.py:152: UserWarning: Glyph 54200 (\N{HANGUL SYLLABLE PYEON}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\pylabtools.py:152: UserWarning: Glyph 52264 (\N{HANGUL SYLLABLE CA}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Appendix02_files/figure-html/cell-28-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="누적수익률-및-표준편차" class="level3">
+<h3 class="anchored" data-anchor-id="누적수익률-및-표준편차">누적수익률 및 표준편차</h3>
+<div id="5542b5c6" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>))</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(result_data.std(), result_data.<span class="bu">sum</span>())</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'risk'</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'return'</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'누적수익률 및 표준편차'</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, x, y <span class="kw">in</span> <span class="bu">zip</span>(result_data.columns, result_data.std(), result_data.<span class="bu">sum</span>()):</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    plt.annotate(label, xy<span class="op">=</span>(x, y), xytext<span class="op">=</span>(<span class="dv">30</span>, <span class="op">-</span><span class="dv">30</span>),</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    textcoords <span class="op">=</span> <span class="st">'offset points'</span>,</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    ha <span class="op">=</span> <span class="st">'right'</span>, va <span class="op">=</span> <span class="st">'bottom'</span>,</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    bbox <span class="op">=</span> <span class="bu">dict</span>(boxstyle <span class="op">=</span> <span class="st">'round,pad=0.5'</span>, fc <span class="op">=</span> <span class="st">'yellow'</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>),</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    arrowprops <span class="op">=</span> <span class="bu">dict</span>(arrowstyle <span class="op">=</span> <span class="st">'-&gt;'</span>, connectionstyle <span class="op">=</span> <span class="st">'arc3,rad=0'</span>))   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\events.py:82: UserWarning: Glyph 45572 (\N{HANGUL SYLLABLE NU}) missing from current font.
+  func(*args, **kwargs)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\events.py:82: UserWarning: Glyph 51201 (\N{HANGUL SYLLABLE JEOG}) missing from current font.
+  func(*args, **kwargs)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\pylabtools.py:152: UserWarning: Glyph 45572 (\N{HANGUL SYLLABLE NU}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)
+c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\pylabtools.py:152: UserWarning: Glyph 51201 (\N{HANGUL SYLLABLE JEOG}) missing from current font.
+  fig.canvas.print_figure(bytes_io, **kw)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Appendix02_files/figure-html/cell-29-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

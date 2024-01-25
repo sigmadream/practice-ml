@@ -77,7 +77,7 @@ def heatmap(values, xlabel, ylabel, xticklabels, yticklabels, cmap=None,
             c = 'k'
         else:
             c = 'w'
-        ax.text(x, y, fmt % value, color=c, ha="center", va="center")
+        # ax.text(x, y, fmt % value, color=c, ha="center", va="center")
     return img
 
 

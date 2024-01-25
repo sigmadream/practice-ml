@@ -1,0 +1,30 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "ML"
+  sidebar:
+    style: "docked"
+    contents:
+      - text: "Introduction"
+        contents:
+          - ML01.ipynb
+          - ML02.ipynb
+          - ML03.ipynb
+          - ML05.ipynb
+      - text: "Practice"
+        contents:
+          - Appendix01.ipynb
+          - Appendix02.ipynb
+          - Appendix03.ipynb
+          - Appendix04.ipynb
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+
