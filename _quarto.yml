@@ -13,6 +13,7 @@ website:
           - ML02.ipynb
           - ML03.ipynb
           - ML05.ipynb
+          - ML06.ipynb
       - text: "Practice"
         contents:
           - Appendix01.ipynb
