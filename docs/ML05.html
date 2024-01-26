@@ -183,7 +183,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ML01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">소개(Overview)</span></a>
+ <span class="menu-text">머신러닝 소개 및 개요</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -195,7 +195,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ML03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">비지도학습</span></a>
+ <span class="menu-text">비지도 학습</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -257,14 +257,26 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#모델-평가와-성능-향상" id="toc-모델-평가와-성능-향상" class="nav-link active" data-scroll-target="#모델-평가와-성능-향상">모델 평가와 성능 향상</a>
+  <li><a href="#교차-검증cross-validation" id="toc-교차-검증cross-validation" class="nav-link active" data-scroll-target="#교차-검증cross-validation">교차 검증(Cross Validation)</a>
   <ul class="collapse">
-  <li><a href="#교차-검증cross-validation" id="toc-교차-검증cross-validation" class="nav-link" data-scroll-target="#교차-검증cross-validation">교차 검증(Cross Validation)</a></li>
+  <li><a href="#scikit-learn의-교차-검증" id="toc-scikit-learn의-교차-검증" class="nav-link" data-scroll-target="#scikit-learn의-교차-검증">scikit-learn의 교차 검증</a></li>
   <li><a href="#교차-검증의-장점" id="toc-교차-검증의-장점" class="nav-link" data-scroll-target="#교차-검증의-장점">교차 검증의 장점</a></li>
-  <li><a href="#계층별stratified-k-겹-교차-검증과-그외-전략들" id="toc-계층별stratified-k-겹-교차-검증과-그외-전략들" class="nav-link" data-scroll-target="#계층별stratified-k-겹-교차-검증과-그외-전략들">계층별(Stratified) k-겹 교차 검증과 그외 전략들</a></li>
   <li><a href="#교차-검증-상세-옵션" id="toc-교차-검증-상세-옵션" class="nav-link" data-scroll-target="#교차-검증-상세-옵션">교차 검증 상세 옵션</a></li>
-  <li><a href="#그리드-서치grid-search" id="toc-그리드-서치grid-search" class="nav-link" data-scroll-target="#그리드-서치grid-search">그리드 서치(Grid Search)</a></li>
-  <li><a href="#평가-지표-및-측정" id="toc-평가-지표-및-측정" class="nav-link" data-scroll-target="#평가-지표-및-측정">평가 지표 및 측정</a></li>
+  </ul></li>
+  <li><a href="#그리드-서치grid-search" id="toc-그리드-서치grid-search" class="nav-link" data-scroll-target="#그리드-서치grid-search">그리드 서치(Grid Search)</a>
+  <ul class="collapse">
+  <li><a href="#매개변수-과대적합과-검증-세트" id="toc-매개변수-과대적합과-검증-세트" class="nav-link" data-scroll-target="#매개변수-과대적합과-검증-세트">매개변수 과대적합과 검증 세트</a></li>
+  <li><a href="#교차-검증을-사용한-그리드-서치" id="toc-교차-검증을-사용한-그리드-서치" class="nav-link" data-scroll-target="#교차-검증을-사용한-그리드-서치">교차 검증을 사용한 그리드 서치</a></li>
+  <li><a href="#교차-검증-결과-분석" id="toc-교차-검증-결과-분석" class="nav-link" data-scroll-target="#교차-검증-결과-분석">교차 검증 결과 분석</a></li>
+  <li><a href="#비대칭-매개변수-그리드-탐색" id="toc-비대칭-매개변수-그리드-탐색" class="nav-link" data-scroll-target="#비대칭-매개변수-그리드-탐색">비대칭 매개변수 그리드 탐색</a></li>
+  <li><a href="#그리드-서치에-다양한-교차-검증-적용" id="toc-그리드-서치에-다양한-교차-검증-적용" class="nav-link" data-scroll-target="#그리드-서치에-다양한-교차-검증-적용">그리드 서치에 다양한 교차 검증 적용</a></li>
+  </ul></li>
+  <li><a href="#평가-지표-및-측정" id="toc-평가-지표-및-측정" class="nav-link" data-scroll-target="#평가-지표-및-측정">평가 지표 및 측정</a>
+  <ul class="collapse">
+  <li><a href="#오차-행렬confusion-matrices" id="toc-오차-행렬confusion-matrices" class="nav-link" data-scroll-target="#오차-행렬confusion-matrices">오차 행렬(Confusion matrices)</a></li>
+  <li><a href="#다중-분류의-평가-지표" id="toc-다중-분류의-평가-지표" class="nav-link" data-scroll-target="#다중-분류의-평가-지표">다중 분류의 평가 지표</a></li>
+  <li><a href="#회귀-평가-지표" id="toc-회귀-평가-지표" class="nav-link" data-scroll-target="#회귀-평가-지표">회귀 평가 지표</a></li>
+  <li><a href="#모델-선택에서-평가-지표-사용하기" id="toc-모델-선택에서-평가-지표-사용하기" class="nav-link" data-scroll-target="#모델-선택에서-평가-지표-사용하기">모델 선택에서 평가 지표 사용하기</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -291,13 +303,14 @@ window.Quarto = {
 </header>
 
 
-<section id="모델-평가와-성능-향상" class="level2">
-<h2 class="anchored" data-anchor-id="모델-평가와-성능-향상">모델 평가와 성능 향상</h2>
 <div id="cell-1" class="cell" data-hide_input="false" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> preamble <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> koreanize_matplotlib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> koreanize_matplotlib</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config InlineBackend.figure_format<span class="op">=</span><span class="st">'retina'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-2" class="cell" data-execution_count="2">
+<section id="교차-검증cross-validation" class="level2">
+<h2 class="anchored" data-anchor-id="교차-검증cross-validation">교차 검증(Cross Validation)</h2>
+<div id="cell-3" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
@@ -314,8 +327,6 @@ window.Quarto = {
 <pre><code>테스트 세트 점수: 0.88</code></pre>
 </div>
 </div>
-<section id="교차-검증cross-validation" class="level3">
-<h3 class="anchored" data-anchor-id="교차-검증cross-validation">교차 검증(Cross Validation)</h3>
 <div id="cell-4" class="cell" data-hide_input="false" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mglearn.plots.plot_cross_validation()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -326,8 +337,8 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<section id="scikit-learn의-교차-검증" class="level4">
-<h4 class="anchored" data-anchor-id="scikit-learn의-교차-검증">scikit-learn의 교차 검증</h4>
+<section id="scikit-learn의-교차-검증" class="level3">
+<h3 class="anchored" data-anchor-id="scikit-learn의-교차-검증">scikit-learn의 교차 검증</h3>
 <div id="cell-6" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
@@ -361,8 +372,8 @@ window.Quarto = {
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                     return_train_score<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>display(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<pre><code>{'fit_time': array([0.004, 0.007, 0.004, 0.004, 0.004]),
- 'score_time': array([0.   , 0.001, 0.001, 0.   , 0.   ]),
+<pre><code>{'fit_time': array([0.005, 0.005, 0.003, 0.004, 0.004]),
+ 'score_time': array([0.   , 0.   , 0.002, 0.   , 0.   ]),
  'test_score': array([0.967, 1.   , 0.933, 0.967, 1.   ]),
  'train_score': array([0.967, 0.967, 0.983, 0.983, 0.975])}</code></pre>
 </div>
@@ -388,28 +399,28 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>4.00e-03</td>
+<td>4.50e-03</td>
 <td>0.00e+00</td>
 <td>0.97</td>
 <td>0.97</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>7.06e-03</td>
-<td>1.00e-03</td>
+<td>5.01e-03</td>
+<td>0.00e+00</td>
 <td>1.00</td>
 <td>0.97</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>4.00e-03</td>
-<td>1.00e-03</td>
+<td>3.00e-03</td>
+<td>1.50e-03</td>
 <td>0.93</td>
 <td>0.98</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>4.12e-03</td>
+<td>4.00e-03</td>
 <td>0.00e+00</td>
 <td>0.97</td>
 <td>0.98</td>
@@ -428,20 +439,18 @@ window.Quarto = {
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>평균 시간과 점수:
- fit_time       4.64e-03
-score_time     4.00e-04
+ fit_time       4.10e-03
+score_time     3.01e-04
 test_score     9.73e-01
 train_score    9.75e-01
 dtype: float64</code></pre>
 </div>
 </div>
 </section>
-</section>
 <section id="교차-검증의-장점" class="level3">
 <h3 class="anchored" data-anchor-id="교차-검증의-장점">교차 검증의 장점</h3>
-</section>
-<section id="계층별stratified-k-겹-교차-검증과-그외-전략들" class="level3">
-<h3 class="anchored" data-anchor-id="계층별stratified-k-겹-교차-검증과-그외-전략들">계층별(Stratified) k-겹 교차 검증과 그외 전략들</h3>
+<section id="계층별stratified-k-겹-교차-검증과-그외-전략들" class="level4">
+<h4 class="anchored" data-anchor-id="계층별stratified-k-겹-교차-검증과-그외-전략들">계층별(Stratified) k-겹 교차 검증과 그외 전략들</h4>
 <div id="cell-13" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
@@ -465,6 +474,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="교차-검증-상세-옵션" class="level3">
 <h3 class="anchored" data-anchor-id="교차-검증-상세-옵션">교차 검증 상세 옵션</h3>
@@ -528,7 +538,7 @@ dtype: float64</code></pre>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"교차 검증 점수:</span><span class="ch">\n</span><span class="st">"</span>, scores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>교차 검증 점수:
- [0.947 0.96  0.987 0.947 0.947 0.933 0.987 0.973 0.973 0.96 ]</code></pre>
+ [0.96  0.947 0.933 0.96  0.973 0.96  0.96  0.973 0.973 0.973]</code></pre>
 </div>
 </div>
 </section>
@@ -560,8 +570,9 @@ dtype: float64</code></pre>
 </div>
 </section>
 </section>
-<section id="그리드-서치grid-search" class="level3">
-<h3 class="anchored" data-anchor-id="그리드-서치grid-search">그리드 서치(Grid Search)</h3>
+</section>
+<section id="그리드-서치grid-search" class="level2">
+<h2 class="anchored" data-anchor-id="그리드-서치grid-search">그리드 서치(Grid Search)</h2>
 <section id="간단한-그리드-서치" class="level4">
 <h4 class="anchored" data-anchor-id="간단한-그리드-서치">간단한 그리드 서치</h4>
 <div id="cell-30" class="cell" data-execution_count="20">
@@ -595,8 +606,8 @@ dtype: float64</code></pre>
 </div>
 </div>
 </section>
-<section id="매개변수-과대적합과-검증-세트" class="level4">
-<h4 class="anchored" data-anchor-id="매개변수-과대적합과-검증-세트">매개변수 과대적합과 검증 세트</h4>
+<section id="매개변수-과대적합과-검증-세트" class="level3">
+<h3 class="anchored" data-anchor-id="매개변수-과대적합과-검증-세트">매개변수 과대적합과 검증 세트</h3>
 <div id="cell-32" class="cell" data-hide_input="false" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>mglearn.plots.plot_threefold_split()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -649,8 +660,8 @@ dtype: float64</code></pre>
 </div>
 </div>
 </section>
-<section id="교차-검증을-사용한-그리드-서치" class="level4">
-<h4 class="anchored" data-anchor-id="교차-검증을-사용한-그리드-서치">교차 검증을 사용한 그리드 서치</h4>
+<section id="교차-검증을-사용한-그리드-서치" class="level3">
+<h3 class="anchored" data-anchor-id="교차-검증을-사용한-그리드-서치">교차 검증을 사용한 그리드 서치</h3>
 <div id="cell-35" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> gamma <span class="kw">in</span> [<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>]:</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> C <span class="kw">in</span> [<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>]:</span>
@@ -1551,8 +1562,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 </section>
-<section id="교차-검증-결과-분석" class="level4">
-<h4 class="anchored" data-anchor-id="교차-검증-결과-분석">교차 검증 결과 분석</h4>
+<section id="교차-검증-결과-분석" class="level3">
+<h3 class="anchored" data-anchor-id="교차-검증-결과-분석">교차 검증 결과 분석</h3>
 <div id="cell-46" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_columns'</span>, <span class="va">None</span>)</span>
@@ -1807,8 +1818,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 </section>
-<section id="비대칭-매개변수-그리드-탐색" class="level4">
-<h4 class="anchored" data-anchor-id="비대칭-매개변수-그리드-탐색">비대칭 매개변수 그리드 탐색</h4>
+<section id="비대칭-매개변수-그리드-탐색" class="level3">
+<h3 class="anchored" data-anchor-id="비대칭-매개변수-그리드-탐색">비대칭 매개변수 그리드 탐색</h3>
 <div id="cell-50" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> [{<span class="st">'kernel'</span>: [<span class="st">'rbf'</span>],</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">'C'</span>: [<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>],</span>
@@ -2930,9 +2941,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 </section>
-<section id="그리드-서치에-다양한-교차-검증-적용" class="level4">
-<h4 class="anchored" data-anchor-id="그리드-서치에-다양한-교차-검증-적용">그리드 서치에 다양한 교차 검증 적용</h4>
-</section>
+<section id="그리드-서치에-다양한-교차-검증-적용" class="level3">
+<h3 class="anchored" data-anchor-id="그리드-서치에-다양한-교차-검증-적용">그리드 서치에 다양한 교차 검증 적용</h3>
 <section id="중첩-교차-검증" class="level4">
 <h4 class="anchored" data-anchor-id="중첩-교차-검증">중첩 교차 검증</h4>
 <div id="cell-55" class="cell" data-execution_count="39">
@@ -2993,9 +3003,10 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </section>
 </section>
-<section id="평가-지표-및-측정" class="level3">
-<h3 class="anchored" data-anchor-id="평가-지표-및-측정">평가 지표 및 측정</h3>
-<div id="cell-59" class="cell" data-execution_count="76">
+</section>
+<section id="평가-지표-및-측정" class="level2">
+<h2 class="anchored" data-anchor-id="평가-지표-및-측정">평가 지표 및 측정</h2>
+<div id="cell-59" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_digits</span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>digits <span class="op">=</span> load_digits()</span>
@@ -3004,7 +3015,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
 <span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>    digits.data, y, random_state<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-60" class="cell" data-execution_count="77">
+<div id="cell-60" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.dummy <span class="im">import</span> DummyClassifier</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>dummy_majority <span class="op">=</span> DummyClassifier(strategy<span class="op">=</span><span class="st">'most_frequent'</span>).fit(X_train, y_train)</span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>pred_most_frequent <span class="op">=</span> dummy_majority.predict(X_test)</span>
@@ -3015,7 +3026,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 테스트 점수: 0.90</code></pre>
 </div>
 </div>
-<div id="cell-61" class="cell" data-execution_count="78">
+<div id="cell-61" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>tree <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">2</span>).fit(X_train, y_train)</span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>pred_tree <span class="op">=</span> tree.predict(X_test)</span>
@@ -3024,7 +3035,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <pre><code>테스트 점수: 0.92</code></pre>
 </div>
 </div>
-<div id="cell-62" class="cell" data-execution_count="79">
+<div id="cell-62" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> DummyClassifier(strategy<span class="op">=</span><span class="st">'stratified'</span>).fit(X_train, y_train)</span>
@@ -3035,13 +3046,13 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>pred_logreg <span class="op">=</span> logreg.predict(X_test)</span>
 <span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"logreg 점수: </span><span class="sc">{:.2f}</span><span class="st">"</span>.<span class="bu">format</span>(logreg.score(X_test, y_test)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>dummy 점수: 0.81
+<pre><code>dummy 점수: 0.86
 logreg 점수: 0.98</code></pre>
 </div>
 </div>
-<section id="오차-행렬confusion-matrices" class="level5">
-<h5 class="anchored" data-anchor-id="오차-행렬confusion-matrices">오차 행렬(Confusion matrices)</h5>
-<div id="cell-64" class="cell" data-execution_count="80">
+<section id="오차-행렬confusion-matrices" class="level3">
+<h3 class="anchored" data-anchor-id="오차-행렬confusion-matrices">오차 행렬(Confusion matrices)</h3>
+<div id="cell-64" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>confusion <span class="op">=</span> confusion_matrix(y_test, pred_logreg)</span>
@@ -3087,8 +3098,8 @@ logreg 점수: 0.98</code></pre>
  [ 47   0]]
 
 무작위 더미 모델:
-[[357  46]
- [ 45   2]]
+[[369  34]
+ [ 46   1]]
 
 결정 트리:
 [[390  13]
@@ -3099,14 +3110,13 @@ logreg 점수: 0.98</code></pre>
  [  6  41]]</code></pre>
 </div>
 </div>
-<section id="정확도와의-관계" class="level6">
-<h6 class="anchored" data-anchor-id="정확도와의-관계">정확도와의 관계</h6>
+<section id="정확도와의-관계" class="level4">
+<h4 class="anchored" data-anchor-id="정확도와의-관계">정확도와의 관계</h4>
 <p><span class="math display">\[\begin{equation}
 \text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}}
 \end{equation}\]</span></p>
-</section>
-<section id="정밀도-재현율-f-점수" class="level6">
-<h6 class="anchored" data-anchor-id="정밀도-재현율-f-점수">정밀도, 재현율, f-점수</h6>
+<section id="정밀도-재현율-f-점수" class="level5">
+<h5 class="anchored" data-anchor-id="정밀도-재현율-f-점수">정밀도, 재현율, f-점수</h5>
 <p><span class="math display">\[\begin{equation}
 \text{정밀도} = \frac{\text{TP}}{\text{TP} + \text{FP}}
 \end{equation}\]</span></p>
@@ -3126,7 +3136,7 @@ logreg 점수: 0.98</code></pre>
 <span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>    f1_score(y_test, pred_logreg)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>빈도 기반 더미 모델의 f1 score: 0.00
-무작위 더미 모델의 f1 score: 0.04
+무작위 더미 모델의 f1 score: 0.02
 트리 모델의 f1 score: 0.55
 로지스틱 회귀 모델의 f1 score: 0.92</code></pre>
 </div>
@@ -3154,12 +3164,12 @@ weighted avg       0.80      0.90      0.85       450
 <div class="cell-output cell-output-stdout">
 <pre><code>              precision    recall  f1-score   support
 
-        9 아님       0.89      0.89      0.89       403
-           9       0.04      0.04      0.04        47
+        9 아님       0.89      0.92      0.90       403
+           9       0.03      0.02      0.02        47
 
-    accuracy                           0.80       450
-   macro avg       0.46      0.46      0.46       450
-weighted avg       0.80      0.80      0.80       450
+    accuracy                           0.82       450
+   macro avg       0.46      0.47      0.46       450
+weighted avg       0.80      0.82      0.81       450
 </code></pre>
 </div>
 </div>
@@ -3180,8 +3190,8 @@ weighted avg       0.98      0.98      0.98       450
 </div>
 </section>
 </section>
-<section id="불확실성-고려" class="level5">
-<h5 class="anchored" data-anchor-id="불확실성-고려">불확실성 고려</h5>
+<section id="불확실성-고려" class="level4">
+<h4 class="anchored" data-anchor-id="불확실성-고려">불확실성 고려</h4>
 <div id="cell-77" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_blobs(n_samples<span class="op">=</span>(<span class="dv">400</span>, <span class="dv">50</span>), cluster_std<span class="op">=</span>[<span class="fl">7.0</span>, <span class="dv">2</span>], random_state<span class="op">=</span><span class="dv">22</span>)</span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, random_state<span class="op">=</span><span class="dv">0</span>)</span>
@@ -3229,8 +3239,8 @@ weighted avg       0.95      0.83      0.87       113
 </div>
 </div>
 </section>
-<section id="정밀도-재현율-곡선과-roc-곡선" class="level5">
-<h5 class="anchored" data-anchor-id="정밀도-재현율-곡선과-roc-곡선">정밀도-재현율 곡선과 ROC 곡선</h5>
+<section id="정밀도-재현율-곡선과-roc-곡선" class="level4">
+<h4 class="anchored" data-anchor-id="정밀도-재현율-곡선과-roc-곡선">정밀도-재현율 곡선과 ROC 곡선</h4>
 <div id="cell-83" class="cell" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> precision_recall_curve</span>
 <span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>precision, recall, thresholds <span class="op">=</span> precision_recall_curve(</span>
@@ -3316,8 +3326,8 @@ svc의 평균 정밀도: 0.666</code></pre>
 </div>
 </div>
 </section>
-<section id="roc-와-auc" class="level5">
-<h5 class="anchored" data-anchor-id="roc-와-auc">ROC 와 AUC</h5>
+<section id="roc-와-auc" class="level4">
+<h4 class="anchored" data-anchor-id="roc-와-auc">ROC 와 AUC</h4>
 <p><span class="math display">\[\begin{equation}
 \text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}}
 \end{equation}\]</span></p>
@@ -3414,8 +3424,9 @@ gamma = 0.01  정확도 = 0.90  AUC = 1.00</code></pre>
 </div>
 </div>
 </section>
-<section id="다중-분류의-평가-지표" class="level4">
-<h4 class="anchored" data-anchor-id="다중-분류의-평가-지표">다중 분류의 평가 지표</h4>
+</section>
+<section id="다중-분류의-평가-지표" class="level3">
+<h3 class="anchored" data-anchor-id="다중-분류의-평가-지표">다중 분류의 평가 지표</h3>
 <div id="cell-94" class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
 <span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
@@ -3485,11 +3496,11 @@ macro 평균 f1 점수: 0.954</code></pre>
 </div>
 </div>
 </section>
-<section id="회귀-평가-지표" class="level4">
-<h4 class="anchored" data-anchor-id="회귀-평가-지표">회귀 평가 지표</h4>
+<section id="회귀-평가-지표" class="level3">
+<h3 class="anchored" data-anchor-id="회귀-평가-지표">회귀 평가 지표</h3>
 </section>
-<section id="모델-선택에서-평가-지표-사용하기" class="level4">
-<h4 class="anchored" data-anchor-id="모델-선택에서-평가-지표-사용하기">모델 선택에서 평가 지표 사용하기</h4>
+<section id="모델-선택에서-평가-지표-사용하기" class="level3">
+<h3 class="anchored" data-anchor-id="모델-선택에서-평가-지표-사용하기">모델 선택에서 평가 지표 사용하기</h3>
 <div id="cell-100" class="cell" data-execution_count="72">
 <div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 분류의 기본 평가 지표는 정확도 입니다</span></span>
 <span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"기본 평가 지표:"</span>,</span>
@@ -3533,8 +3544,8 @@ macro 평균 f1 점수: 0.954</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>7.00e-03</td>
-<td>1.30e-02</td>
+<td>6.12e-03</td>
+<td>8.02e-03</td>
 <td>0.97</td>
 <td>0.99</td>
 <td>0.98</td>
@@ -3544,8 +3555,8 @@ macro 평균 f1 점수: 0.954</code></pre>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>6.50e-03</td>
-<td>9.51e-03</td>
+<td>7.51e-03</td>
+<td>7.51e-03</td>
 <td>0.99</td>
 <td>1.00</td>
 <td>0.99</td>
@@ -3555,8 +3566,8 @@ macro 평균 f1 점수: 0.954</code></pre>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>6.00e-03</td>
-<td>8.51e-03</td>
+<td>6.50e-03</td>
+<td>7.00e-03</td>
 <td>1.00</td>
 <td>1.00</td>
 <td>1.00</td>
@@ -3566,8 +3577,8 @@ macro 평균 f1 점수: 0.954</code></pre>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
+<td>6.00e-03</td>
 <td>6.51e-03</td>
-<td>7.50e-03</td>
 <td>0.99</td>
 <td>1.00</td>
 <td>1.00</td>
@@ -3577,8 +3588,8 @@ macro 평균 f1 점수: 0.954</code></pre>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>7.51e-03</td>
-<td>7.51e-03</td>
+<td>6.00e-03</td>
+<td>6.51e-03</td>
 <td>0.98</td>
 <td>1.00</td>
 <td>0.95</td>
@@ -3592,8 +3603,7 @@ macro 평균 f1 점수: 0.954</code></pre>
 </div>
 </div>
 </div>
-<p>사이킷런 0.22 버전에서 <code>GridSearchCV</code> 클래스의 <code>cv</code> 매개변수 기본값이 3에서 5로 박뀌었습니다.</p>
-<div id="cell-103" class="cell" data-execution_count="74">
+<div id="cell-102" class="cell" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb116"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
 <span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>    digits.data, digits.target <span class="op">==</span> <span class="dv">9</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -3618,7 +3628,7 @@ macro 평균 f1 점수: 0.954</code></pre>
 테스트 세트 정확도: 0.973</code></pre>
 </div>
 </div>
-<div id="cell-104" class="cell" data-execution_count="75">
+<div id="cell-103" class="cell" data-execution_count="75">
 <div class="sourceCode cell-code" id="cb118"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 평균 정밀도 지표 사용</span></span>
 <span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> GridSearchCV(SVC(), param_grid<span class="op">=</span>param_grid, scoring<span class="op">=</span><span class="st">"average_precision"</span>)</span>
 <span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>grid.fit(X_train, y_train)</span>
@@ -3640,7 +3650,6 @@ macro 평균 f1 점수: 0.954</code></pre>
 </div>
 
 
-</section>
 </section>
 </section>
 

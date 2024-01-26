@@ -20,7 +20,6 @@ website:
           - Appendix02.ipynb
           - Appendix03.ipynb
           - Appendix04.ipynb
-
 format:
   html:
     theme: cosmo

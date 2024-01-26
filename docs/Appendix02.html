@@ -183,7 +183,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ML01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">소개(Overview)</span></a>
+ <span class="menu-text">머신러닝 소개 및 개요</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -195,7 +195,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ML03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">비지도학습</span></a>
+ <span class="menu-text">비지도 학습</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -257,9 +257,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#kospi와-연관된-지수는" id="toc-kospi와-연관된-지수는" class="nav-link active" data-scroll-target="#kospi와-연관된-지수는">KOSPI와 연관된 지수는?</a>
-  <ul class="collapse">
-  <li><a href="#세계-각국의-지수들-관련-데이터-불러오기" id="toc-세계-각국의-지수들-관련-데이터-불러오기" class="nav-link" data-scroll-target="#세계-각국의-지수들-관련-데이터-불러오기">세계 각국의 지수들 관련 데이터 불러오기</a>
+  <li><a href="#세계-각국의-지수들-관련-데이터-불러오기" id="toc-세계-각국의-지수들-관련-데이터-불러오기" class="nav-link active" data-scroll-target="#세계-각국의-지수들-관련-데이터-불러오기">세계 각국의 지수들 관련 데이터 불러오기</a>
   <ul class="collapse">
   <li><a href="#kospi" id="toc-kospi" class="nav-link" data-scroll-target="#kospi">KOSPI</a></li>
   <li><a href="#nasdaq" id="toc-nasdaq" class="nav-link" data-scroll-target="#nasdaq">Nasdaq</a></li>
@@ -290,7 +288,6 @@ window.Quarto = {
   <li><a href="#평균수익률-및-표준편차" id="toc-평균수익률-및-표준편차" class="nav-link" data-scroll-target="#평균수익률-및-표준편차">평균수익률 및 표준편차</a></li>
   <li><a href="#누적수익률-및-표준편차" id="toc-누적수익률-및-표준편차" class="nav-link" data-scroll-target="#누적수익률-및-표준편차">누적수익률 및 표준편차</a></li>
   </ul></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -316,8 +313,6 @@ window.Quarto = {
 </header>
 
 
-<section id="kospi와-연관된-지수는" class="level1">
-<h1>KOSPI와 연관된 지수는?</h1>
 <div id="b31460b7" class="cell" data-outputid="cabf83e1-7172-4fc6-ae14-11c9874bac85" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -440,29 +435,29 @@ window.Quarto = {
 <td>...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2024-01-17</td>
-<td>-0.59</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024-01-18</td>
-<td>1.35</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024-01-19</td>
-<td>1.70</td>
-</tr>
-<tr class="even">
 <td data-quarto-table-cell-role="th">2024-01-22</td>
 <td>0.32</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td data-quarto-table-cell-role="th">2024-01-23</td>
 <td>0.43</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-24</td>
+<td>0.36</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2024-01-25</td>
+<td>0.18</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-26</td>
+<td>0.11</td>
 </tr>
 </tbody>
 </table>
 
-<p>5690 rows × 1 columns</p>
+<p>5693 rows × 1 columns</p>
 </div>
 </div>
 </div>
@@ -529,7 +524,7 @@ window.Quarto = {
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>usa_treasury <span class="op">=</span> usa_treasury.rename(columns <span class="op">=</span> {<span class="st">'Change'</span>:<span class="st">'USA_TREASURY'</span>})</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>usa_treasury</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\sigma\AppData\Local\Temp\ipykernel_19212\2197024751.py:2: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+<pre><code>C:\Users\sigma\AppData\Local\Temp\ipykernel_28696\2197024751.py:2: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
   usa_treasury['Change'] = round(usa_treasury['Adj Close'].pct_change() * 100, 2)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -610,7 +605,7 @@ window.Quarto = {
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>japan.rename(columns <span class="op">=</span> {<span class="st">'Change'</span>:<span class="st">'Nikkei'</span>},inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>japan</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\sigma\AppData\Local\Temp\ipykernel_19212\3872993107.py:2: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+<pre><code>C:\Users\sigma\AppData\Local\Temp\ipykernel_28696\3872993107.py:2: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
   japan['Change'] = round(japan['Adj Close'].pct_change() * 100, 2)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="6">
@@ -687,7 +682,7 @@ window.Quarto = {
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>usd_krw <span class="op">=</span> usd_krw.rename(columns <span class="op">=</span> {<span class="st">'Change'</span>:<span class="st">'USD/KRW'</span>})</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>usd_krw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\sigma\AppData\Local\Temp\ipykernel_19212\4191296131.py:2: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+<pre><code>C:\Users\sigma\AppData\Local\Temp\ipykernel_28696\4191296131.py:2: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
   usd_krw['Change'] = round(usd_krw['Adj Close'].pct_change() * 100, 2)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -731,14 +726,6 @@ window.Quarto = {
 <td>...</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2024-01-18</td>
-<td>0.47</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024-01-19</td>
-<td>-0.48</td>
-</tr>
-<tr class="odd">
 <td data-quarto-table-cell-role="th">2024-01-22</td>
 <td>-0.33</td>
 </tr>
@@ -748,12 +735,20 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2024-01-24</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2024-01-25</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024-01-26</td>
 <td>-0.32</td>
 </tr>
 </tbody>
 </table>
 
-<p>5258 rows × 1 columns</p>
+<p>5260 rows × 1 columns</p>
 </div>
 </div>
 </div>
@@ -766,139 +761,8 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>result_data <span class="op">=</span> pd.concat([kospi, nasdaq, sap, usd_krw, usa_treasury, japan], axis <span class="op">=</span> <span class="dv">1</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>result_data.fillna(result_data.mean(), inplace <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>result_data <span class="op">=</span> <span class="bu">round</span>(result_data, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<div>
-
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">KOSPI</th>
-<th data-quarto-table-cell-role="th">NASDAQ</th>
-<th data-quarto-table-cell-role="th">S&amp;P</th>
-<th data-quarto-table-cell-role="th">USD/KRW</th>
-<th data-quarto-table-cell-role="th">USA_TREASURY</th>
-<th data-quarto-table-cell-role="th">Nikkei</th>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">Date</th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2001-06-11</td>
-<td>-2.18</td>
-<td>-2.00</td>
-<td>-0.84</td>
-<td>0.01</td>
-<td>-0.86</td>
-<td>-1.52</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2001-06-12</td>
-<td>-0.18</td>
-<td>-0.04</td>
-<td>0.12</td>
-<td>0.01</td>
-<td>-0.89</td>
-<td>-2.92</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2001-06-13</td>
-<td>1.14</td>
-<td>-2.23</td>
-<td>-1.13</td>
-<td>0.01</td>
-<td>0.32</td>
-<td>-0.13</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2001-06-14</td>
-<td>-0.05</td>
-<td>-3.66</td>
-<td>-1.75</td>
-<td>0.01</td>
-<td>-0.80</td>
-<td>0.18</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2001-06-15</td>
-<td>0.85</td>
-<td>-0.77</td>
-<td>-0.45</td>
-<td>0.01</td>
-<td>0.25</td>
-<td>-0.44</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2023-12-24</td>
-<td>0.03</td>
-<td>0.04</td>
-<td>0.03</td>
-<td>0.01</td>
-<td>0.00</td>
-<td>0.03</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2023-12-31</td>
-<td>0.03</td>
-<td>0.04</td>
-<td>0.03</td>
-<td>0.01</td>
-<td>0.00</td>
-<td>0.03</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024-01-07</td>
-<td>0.03</td>
-<td>0.04</td>
-<td>0.03</td>
-<td>0.01</td>
-<td>0.00</td>
-<td>0.03</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2024-01-14</td>
-<td>0.03</td>
-<td>0.04</td>
-<td>0.03</td>
-<td>0.01</td>
-<td>0.00</td>
-<td>0.03</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2024-01-21</td>
-<td>0.03</td>
-<td>0.04</td>
-<td>0.03</td>
-<td>0.01</td>
-<td>0.00</td>
-<td>0.03</td>
-</tr>
-</tbody>
-</table>
-
-<p>7084 rows × 6 columns</p>
 </div>
-</div>
-</div>
-<div id="3b28cbcb" class="cell" data-execution_count="28">
+<div id="3b28cbcb" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>result_data.to_csv(<span class="st">'./data/kospi_result_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -910,13 +774,13 @@ window.Quarto = {
 <ul>
 <li>kospi 를 target으로 설정하였습니다</li>
 </ul>
-<div id="20c5d523" class="cell" data-execution_count="9">
+<div id="20c5d523" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> result_data[[<span class="st">"NASDAQ"</span>,<span class="st">"S&amp;P"</span>,<span class="st">"USD/KRW"</span>,<span class="st">"USA_TREASURY"</span>,<span class="st">"Nikkei"</span>]]</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> result_data[<span class="st">"KOSPI"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="n-34일때-최적의-분류를-확인" class="level3">
 <h3 class="anchored" data-anchor-id="n-34일때-최적의-분류를-확인"><span class="math inline">\(N\)</span> = <span class="math inline">\(\{3,4\}\)</span>일때 최적의 분류를 확인</h3>
-<div id="fee171ef" class="cell" data-execution_count="10">
+<div id="fee171ef" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ks <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">10</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>inertias <span class="op">=</span> []</span>
@@ -942,20 +806,20 @@ window.Quarto = {
 </section>
 <section id="n-3로-군집분석-진행" class="level3">
 <h3 class="anchored" data-anchor-id="n-3로-군집분석-진행"><span class="math inline">\(N\)</span> = <span class="math inline">\(3\)</span>로 군집분석 진행</h3>
-<div id="29c4fc32" class="cell" data-execution_count="11">
+<div id="29c4fc32" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>n_clusters <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>n_clusters,random_state<span class="op">=</span><span class="dv">42</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>kmeans.fit(X)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>y_kmeans <span class="op">=</span> kmeans.predict(X)</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>y_kmeans[<span class="dv">1</span>:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>array([2, 2, 1, 2, 2, 2, 2, 2, 1])</code></pre>
 </div>
 </div>
 </section>
 <section id="tsne를-통한-차원축소-진행" class="level3">
 <h3 class="anchored" data-anchor-id="tsne를-통한-차원축소-진행">TSNE를 통한 차원축소 진행</h3>
-<div id="9c846fd5" class="cell" data-execution_count="12">
+<div id="9c846fd5" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -967,26 +831,26 @@ window.Quarto = {
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( <span class="st">'t-SNE done! Time elapsed: </span><span class="sc">{}</span><span class="st"> seconds'</span>.<span class="bu">format</span>(time.time() <span class="op">-</span> time_start ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[t-SNE] Computing 97 nearest neighbors...
-[t-SNE] Indexed 7084 samples in 0.004s...
-[t-SNE] Computed neighbors for 7084 samples in 0.174s...
-[t-SNE] Computed conditional probabilities for sample 1000 / 7084
-[t-SNE] Computed conditional probabilities for sample 2000 / 7084
-[t-SNE] Computed conditional probabilities for sample 3000 / 7084
-[t-SNE] Computed conditional probabilities for sample 4000 / 7084
-[t-SNE] Computed conditional probabilities for sample 5000 / 7084
-[t-SNE] Computed conditional probabilities for sample 6000 / 7084
-[t-SNE] Computed conditional probabilities for sample 7000 / 7084
-[t-SNE] Computed conditional probabilities for sample 7084 / 7084
+[t-SNE] Indexed 7086 samples in 0.002s...
+[t-SNE] Computed neighbors for 7086 samples in 0.169s...
+[t-SNE] Computed conditional probabilities for sample 1000 / 7086
+[t-SNE] Computed conditional probabilities for sample 2000 / 7086
+[t-SNE] Computed conditional probabilities for sample 3000 / 7086
+[t-SNE] Computed conditional probabilities for sample 4000 / 7086
+[t-SNE] Computed conditional probabilities for sample 5000 / 7086
+[t-SNE] Computed conditional probabilities for sample 6000 / 7086
+[t-SNE] Computed conditional probabilities for sample 7000 / 7086
+[t-SNE] Computed conditional probabilities for sample 7086 / 7086
 [t-SNE] Mean sigma: 0.000000
-[t-SNE] KL divergence after 250 iterations with early exaggeration: 77.894424
-[t-SNE] KL divergence after 1000 iterations: 1.677709
-t-SNE done! Time elapsed: 11.359419584274292 seconds</code></pre>
+[t-SNE] KL divergence after 250 iterations with early exaggeration: 77.912430
+[t-SNE] KL divergence after 1000 iterations: 1.677088
+t-SNE done! Time elapsed: 11.547185897827148 seconds</code></pre>
 </div>
 </div>
 </section>
 <section id="군집분석-결과-시각화" class="level3">
 <h3 class="anchored" data-anchor-id="군집분석-결과-시각화">군집분석 결과 시각화</h3>
-<div id="e27e6aad" class="cell" data-execution_count="13">
+<div id="e27e6aad" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(tsne_results[:,<span class="dv">0</span>], tsne_results[:,<span class="dv">1</span>], c<span class="op">=</span>y_kmeans, s<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'bwr'</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>tsne_results[:,<span class="dv">0</span>], y<span class="op">=</span>tsne_results[:,<span class="dv">1</span>], hue<span class="op">=</span>y_kmeans, palette<span class="op">=</span><span class="st">'bwr'</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -998,13 +862,13 @@ t-SNE done! Time elapsed: 11.359419584274292 seconds</code></pre>
 </div>
 </div>
 </div>
-<div id="69e7a2ef" class="cell" data-execution_count="14">
+<div id="69e7a2ef" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> result_data.copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="079eb23e" class="cell" data-execution_count="15">
+<div id="079eb23e" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df1[<span class="st">'cluster'</span>] <span class="op">=</span> y_kmeans</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <div>
 
 
@@ -1145,22 +1009,22 @@ t-SNE done! Time elapsed: 11.359419584274292 seconds</code></pre>
 </tbody>
 </table>
 
-<p>7084 rows × 7 columns</p>
+<p>7086 rows × 7 columns</p>
 </div>
 </div>
 </div>
 </section>
 <section id="군집분석-결과에-따른-군집들을-새로운-데이터-프레임으로-생성" class="level3">
 <h3 class="anchored" data-anchor-id="군집분석-결과에-따른-군집들을-새로운-데이터-프레임으로-생성">군집분석 결과에 따른 군집들을 새로운 데이터 프레임으로 생성</h3>
-<div id="2eccf2de" class="cell" data-execution_count="16">
+<div id="2eccf2de" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 군집 0 ~ 3 까지 분류된거를 변수명에 추가</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>cluster_2 <span class="op">=</span> df1[df1[<span class="st">'cluster'</span>]<span class="op">==</span><span class="dv">2</span>]</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>cluster_1 <span class="op">=</span> df1[df1[<span class="st">'cluster'</span>]<span class="op">==</span><span class="dv">1</span>]</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>cluster_0 <span class="op">=</span> df1[df1[<span class="st">'cluster'</span>]<span class="op">==</span><span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cecd9359" class="cell" data-execution_count="17">
+<div id="cecd9359" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>cluster_0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="18">
 <div>
 
 
@@ -1305,9 +1169,9 @@ t-SNE done! Time elapsed: 11.359419584274292 seconds</code></pre>
 </div>
 </div>
 </div>
-<div id="07b9480e" class="cell" data-execution_count="18">
+<div id="07b9480e" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cluster_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <div>
 
 
@@ -1452,9 +1316,9 @@ t-SNE done! Time elapsed: 11.359419584274292 seconds</code></pre>
 </div>
 </div>
 </div>
-<div id="baf45c95" class="cell" data-execution_count="19">
+<div id="baf45c95" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cluster_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="20">
 <div>
 
 
@@ -1595,7 +1459,7 @@ t-SNE done! Time elapsed: 11.359419584274292 seconds</code></pre>
 </tbody>
 </table>
 
-<p>4908 rows × 7 columns</p>
+<p>4910 rows × 7 columns</p>
 </div>
 </div>
 </div>
@@ -1605,13 +1469,13 @@ t-SNE done! Time elapsed: 11.359419584274292 seconds</code></pre>
 <ul>
 <li>군집 0 ~ 3 까지의 수익률을 한번 확인</li>
 </ul>
-<div id="bfc6a751" class="cell" data-execution_count="20">
+<div id="bfc6a751" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cluster_total<span class="op">=</span> df1.groupby(<span class="st">'cluster'</span>).mean()</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>cluster_total[<span class="st">'return'</span>] <span class="op">=</span> cluster_total.T.mean()</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>cluster_total[<span class="st">'std'</span>] <span class="op">=</span> cluster_total.T.std()</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>cluster_total <span class="op">=</span> cluster_total.T</span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>cluster_total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <div>
 
 
@@ -1629,49 +1493,49 @@ t-SNE done! Time elapsed: 11.359419584274292 seconds</code></pre>
 <td data-quarto-table-cell-role="th">KOSPI</td>
 <td>0.305276</td>
 <td>-0.370711</td>
-<td>0.074639</td>
+<td>0.074682</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">NASDAQ</td>
 <td>0.798905</td>
 <td>-1.309001</td>
-<td>0.215742</td>
+<td>0.215778</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">S&amp;P</td>
 <td>0.709920</td>
 <td>-1.130449</td>
-<td>0.172653</td>
+<td>0.172595</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">USD/KRW</td>
 <td>-0.014442</td>
 <td>0.094522</td>
-<td>-0.009719</td>
+<td>-0.009715</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">USA_TREASURY</td>
 <td>3.434774</td>
 <td>-2.606080</td>
-<td>-0.036925</td>
+<td>-0.036902</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Nikkei</td>
 <td>0.363940</td>
 <td>-0.446105</td>
-<td>0.074531</td>
+<td>0.074513</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">return</td>
 <td>0.933062</td>
 <td>-0.961304</td>
-<td>0.081820</td>
+<td>0.081825</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">std</td>
 <td>1.150517</td>
 <td>0.874051</td>
-<td>0.090157</td>
+<td>0.090151</td>
 </tr>
 </tbody>
 </table>
@@ -1689,7 +1553,7 @@ t-SNE done! Time elapsed: 11.359419584274292 seconds</code></pre>
 </section>
 <section id="군집별-수익률-대비-risk-시각화" class="level3">
 <h3 class="anchored" data-anchor-id="군집별-수익률-대비-risk-시각화">군집별 수익률 대비 risk 시각화</h3>
-<div id="3a0ea721" class="cell" data-execution_count="21">
+<div id="3a0ea721" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>))</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(cluster_total.std(), cluster_total.mean())</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'risk'</span>)</span>
@@ -1719,10 +1583,10 @@ t-SNE done! Time elapsed: 11.359419584274292 seconds</code></pre>
 </ul>
 <section id="히트맵" class="level3">
 <h3 class="anchored" data-anchor-id="히트맵">히트맵</h3>
-<div id="a322c489" class="cell" data-execution_count="22">
+<div id="a322c489" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df1.corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ef9056e8" class="cell" data-execution_count="23">
+<div id="ef9056e8" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(result_data.corr(), annot<span class="op">=</span><span class="va">True</span>, fmt <span class="op">=</span> <span class="st">'.2f'</span>, linewidths<span class="op">=</span><span class="fl">.5</span>, cmap<span class="op">=</span><span class="st">'Blues'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -1739,7 +1603,7 @@ t-SNE done! Time elapsed: 11.359419584274292 seconds</code></pre>
 <ul>
 <li>확실히 Nasdaq과 S&amp;P가 서로 미국시장이라서 상관관계가 높은것을 확인할 수 있고, kospi와의 상관관계는 1.Nikkei &gt; 2. Nasdaq &gt; 3. S&amp;P &gt; 4.usa_treasury &gt; 5.Dollar 순의 상관관계를 보임</li>
 </ul>
-<div id="b42ff38e" class="cell" data-execution_count="24">
+<div id="b42ff38e" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>idx, vals <span class="op">=</span> [], []</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ix, i <span class="kw">in</span> <span class="bu">enumerate</span>(result_data.columns.values):</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> result_data.columns.values[ix <span class="op">+</span> <span class="dv">1</span>:]:</span>
@@ -1749,29 +1613,29 @@ t-SNE done! Time elapsed: 11.359419584274292 seconds</code></pre>
 <span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>ser <span class="op">=</span> pd.Series(data<span class="op">=</span>vals, index<span class="op">=</span>idx)</span>
 <span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>ser_ord <span class="op">=</span> ser.sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>ser_ord</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
-<pre><code>(NASDAQ, S&amp;P)              0.938377
-(KOSPI, Nikkei)            0.576193
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>(NASDAQ, S&amp;P)              0.938372
+(KOSPI, Nikkei)            0.576190
 (S&amp;P, USA_TREASURY)        0.320329
-(NASDAQ, USA_TREASURY)     0.273524
+(NASDAQ, USA_TREASURY)     0.273523
 (KOSPI, S&amp;P)               0.192238
-(KOSPI, NASDAQ)            0.182993
+(KOSPI, NASDAQ)            0.182981
 (S&amp;P, Nikkei)              0.150417
-(NASDAQ, Nikkei)           0.140277
+(NASDAQ, Nikkei)           0.140276
 (KOSPI, USA_TREASURY)      0.113130
 (USA_TREASURY, Nikkei)     0.105009
 (USD/KRW, USA_TREASURY)    0.003050
-(NASDAQ, USD/KRW)         -0.063350
+(NASDAQ, USD/KRW)         -0.063353
 (S&amp;P, USD/KRW)            -0.083819
 (USD/KRW, Nikkei)         -0.186367
-(KOSPI, USD/KRW)          -0.213704
+(KOSPI, USD/KRW)          -0.213738
 dtype: float64</code></pre>
 </div>
 </div>
 </section>
 <section id="산점도-그래프" class="level3">
 <h3 class="anchored" data-anchor-id="산점도-그래프">산점도 그래프</h3>
-<div id="e7063dae" class="cell" data-execution_count="25">
+<div id="e7063dae" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.1</span>) <span class="co">## 폰트사이즈 조절</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">'ticks'</span>) <span class="co">## 축 눈금 표시</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> result_data[[<span class="st">"KOSPI"</span>, <span class="st">"NASDAQ"</span>,<span class="st">"S&amp;P"</span>,<span class="st">"USD/KRW"</span>,<span class="st">"USA_TREASURY"</span>,<span class="st">"Nikkei"</span>]]</span>
@@ -1791,18 +1655,19 @@ dtype: float64</code></pre>
 <h2 class="anchored" data-anchor-id="세계-각국-지수의-수익률-대비-risk-시각화">세계 각국 지수의 수익률 대비 risk 시각화</h2>
 <section id="평균수익률-및-표준편차" class="level3">
 <h3 class="anchored" data-anchor-id="평균수익률-및-표준편차">평균수익률 및 표준편차</h3>
-<div id="0f4065df" class="cell" data-execution_count="26">
+<div id="0f4065df" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>))</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(result_data.std(), result_data.mean())</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'risk'</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'return'</span>)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'평균수익률 및 표준편차'</span>)</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, x, y <span class="kw">in</span> <span class="bu">zip</span>(result_data.columns, result_data.std(), result_data.mean()):</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    plt.annotate(label, xy<span class="op">=</span>(x, y), xytext<span class="op">=</span>(<span class="dv">30</span>, <span class="op">-</span><span class="dv">30</span>),</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    textcoords <span class="op">=</span> <span class="st">'offset points'</span>,</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    ha <span class="op">=</span> <span class="st">'right'</span>, va <span class="op">=</span> <span class="st">'bottom'</span>,</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    bbox <span class="op">=</span> <span class="bu">dict</span>(boxstyle <span class="op">=</span> <span class="st">'round,pad=0.5'</span>, fc <span class="op">=</span> <span class="st">'yellow'</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>),</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    arrowprops <span class="op">=</span> <span class="bu">dict</span>(arrowstyle <span class="op">=</span> <span class="st">'-&gt;'</span>, connectionstyle <span class="op">=</span> <span class="st">'arc3,rad=0'</span>))   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>plt.yticks(fontname <span class="op">=</span> <span class="st">"DejaVu Sans"</span>) <span class="co"># 한글 폰트가 지수에 음수를 표시하지 못하므로 ytick의 폰트를 바꾸어 줍니다.</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(result_data.std(), result_data.mean())</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'risk'</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'return'</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'평균수익률 및 표준편차'</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, x, y <span class="kw">in</span> <span class="bu">zip</span>(result_data.columns, result_data.std(), result_data.mean()):</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    plt.annotate(label, xy<span class="op">=</span>(x, y), xytext<span class="op">=</span>(<span class="dv">30</span>, <span class="op">-</span><span class="dv">30</span>),</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    textcoords <span class="op">=</span> <span class="st">'offset points'</span>,</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    ha <span class="op">=</span> <span class="st">'right'</span>, va <span class="op">=</span> <span class="st">'bottom'</span>,</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    bbox <span class="op">=</span> <span class="bu">dict</span>(boxstyle <span class="op">=</span> <span class="st">'round,pad=0.5'</span>, fc <span class="op">=</span> <span class="st">'yellow'</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>),</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    arrowprops <span class="op">=</span> <span class="bu">dict</span>(arrowstyle <span class="op">=</span> <span class="st">'-&gt;'</span>, connectionstyle <span class="op">=</span> <span class="st">'arc3,rad=0'</span>))   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\events.py:82: UserWarning: Glyph 54217 (\N{HANGUL SYLLABLE PYEONG}) missing from current font.
   func(*args, **kwargs)
@@ -1856,18 +1721,19 @@ c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\pylabt
 </section>
 <section id="누적수익률-및-표준편차" class="level3">
 <h3 class="anchored" data-anchor-id="누적수익률-및-표준편차">누적수익률 및 표준편차</h3>
-<div id="5542b5c6" class="cell" data-execution_count="27">
+<div id="5542b5c6" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>))</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(result_data.std(), result_data.<span class="bu">sum</span>())</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'risk'</span>)</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'return'</span>)</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'누적수익률 및 표준편차'</span>)</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, x, y <span class="kw">in</span> <span class="bu">zip</span>(result_data.columns, result_data.std(), result_data.<span class="bu">sum</span>()):</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    plt.annotate(label, xy<span class="op">=</span>(x, y), xytext<span class="op">=</span>(<span class="dv">30</span>, <span class="op">-</span><span class="dv">30</span>),</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    textcoords <span class="op">=</span> <span class="st">'offset points'</span>,</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    ha <span class="op">=</span> <span class="st">'right'</span>, va <span class="op">=</span> <span class="st">'bottom'</span>,</span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    bbox <span class="op">=</span> <span class="bu">dict</span>(boxstyle <span class="op">=</span> <span class="st">'round,pad=0.5'</span>, fc <span class="op">=</span> <span class="st">'yellow'</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>),</span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    arrowprops <span class="op">=</span> <span class="bu">dict</span>(arrowstyle <span class="op">=</span> <span class="st">'-&gt;'</span>, connectionstyle <span class="op">=</span> <span class="st">'arc3,rad=0'</span>))   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>plt.yticks(fontname <span class="op">=</span> <span class="st">"DejaVu Sans"</span>) <span class="co"># 한글 폰트가 지수에 음수를 표시하지 못하므로 ytick의 폰트를 바꾸어 줍니다.</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(result_data.std(), result_data.<span class="bu">sum</span>())</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'risk'</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'return'</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'누적수익률 및 표준편차'</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, x, y <span class="kw">in</span> <span class="bu">zip</span>(result_data.columns, result_data.std(), result_data.<span class="bu">sum</span>()):</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    plt.annotate(label, xy<span class="op">=</span>(x, y), xytext<span class="op">=</span>(<span class="dv">30</span>, <span class="op">-</span><span class="dv">30</span>),</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    textcoords <span class="op">=</span> <span class="st">'offset points'</span>,</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    ha <span class="op">=</span> <span class="st">'right'</span>, va <span class="op">=</span> <span class="st">'bottom'</span>,</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    bbox <span class="op">=</span> <span class="bu">dict</span>(boxstyle <span class="op">=</span> <span class="st">'round,pad=0.5'</span>, fc <span class="op">=</span> <span class="st">'yellow'</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>),</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>    arrowprops <span class="op">=</span> <span class="bu">dict</span>(arrowstyle <span class="op">=</span> <span class="st">'-&gt;'</span>, connectionstyle <span class="op">=</span> <span class="st">'arc3,rad=0'</span>))   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\events.py:82: UserWarning: Glyph 45572 (\N{HANGUL SYLLABLE NU}) missing from current font.
   func(*args, **kwargs)
@@ -1888,7 +1754,6 @@ c:\Users\sigma\Practices\practice-ml\.venv\Lib\site-packages\IPython\core\pylabt
 </div>
 
 
-</section>
 </section>
 </section>
 

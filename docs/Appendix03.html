@@ -154,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ML01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">소개(Overview)</span></a>
+ <span class="menu-text">머신러닝 소개 및 개요</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -166,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ML03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">비지도학습</span></a>
+ <span class="menu-text">비지도 학습</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -224,13 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#타이타닉-생존자-예측" id="toc-타이타닉-생존자-예측" class="nav-link active" data-scroll-target="#타이타닉-생존자-예측">타이타닉 생존자 예측</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -254,17 +248,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="타이타닉-생존자-예측" class="level1">
-<h1>타이타닉 생존자 예측</h1>
-<p>::: {#cell-1 .cell _cell_guid=‘b1076dfc-b9ad-4769-8c92-a6c4dae69d19’ _uuid=‘8f2839f25d086af736a60e9eeb907d3b93b6e0e5’ execution=‘{“iopub.execute_input”:“2021-03-26T09:30:19.361826Z”,“iopub.status.busy”:“2021-03-26T09:30:19.360602Z”,“iopub.status.idle”:“2021-03-26T09:30:19.367551Z”,“shell.execute_reply”:“2021-03-26T09:30:19.366426Z”}’ papermill=‘{“duration”:0.036522,“end_time”:“2021-03-26T09:30:19.367861”,“exception”:false,“start_time”:“2021-03-26T09:30:19.331339”,“status”:“completed”}’ tags=‘[]’ execution_count=2}</p>
+<p>::: {#cell-1 .cell _cell_guid=‘b1076dfc-b9ad-4769-8c92-a6c4dae69d19’ _uuid=‘8f2839f25d086af736a60e9eeb907d3b93b6e0e5’ execution=‘{“iopub.execute_input”:“2021-03-26T09:30:19.361826Z”,“iopub.status.busy”:“2021-03-26T09:30:19.360602Z”,“iopub.status.idle”:“2021-03-26T09:30:19.367551Z”,“shell.execute_reply”:“2021-03-26T09:30:19.366426Z”}’ papermill=‘{“duration”:0.036522,“end_time”:“2021-03-26T09:30:19.367861”,“exception”:false,“start_time”:“2021-03-26T09:30:19.331339”,“status”:“completed”}’ tags=‘[]’ execution_count=1}</p>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>:::</p>
-<div id="cell-2" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:19.470861Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:19.470011Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:19.532969Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:19.532258Z&quot;}" data-papermill="{&quot;duration&quot;:0.091534,&quot;end_time&quot;:&quot;2021-03-26T09:30:19.533134&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:19.441600&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="3">
+<div id="cell-2" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:19.470861Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:19.470011Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:19.532969Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:19.532258Z&quot;}" data-papermill="{&quot;duration&quot;:0.091534,&quot;end_time&quot;:&quot;2021-03-26T09:30:19.533134&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:19.441600&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> pd.read_csv(<span class="st">"data/titanic_train.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>test <span class="op">=</span> pd.read_csv(<span class="st">"data/titanic_test.csv"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>train.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -368,9 +360,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-3" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:19.600724Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:19.599940Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:19.604605Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:19.603897Z&quot;}" data-papermill="{&quot;duration&quot;:0.046611,&quot;end_time&quot;:&quot;2021-03-26T09:30:19.604777&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:19.558166&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="4">
+<div id="cell-3" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:19.600724Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:19.599940Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:19.604605Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:19.603897Z&quot;}" data-papermill="{&quot;duration&quot;:0.046611,&quot;end_time&quot;:&quot;2021-03-26T09:30:19.604777&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:19.558166&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>test.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
@@ -468,7 +460,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-4" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:19.718133Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:19.715589Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:19.723129Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:19.722502Z&quot;}" data-papermill="{&quot;duration&quot;:0.040472,&quot;end_time&quot;:&quot;2021-03-26T09:30:19.723297&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:19.682825&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="5">
+<div id="cell-4" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:19.718133Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:19.715589Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:19.723129Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:19.722502Z&quot;}" data-papermill="{&quot;duration&quot;:0.040472,&quot;end_time&quot;:&quot;2021-03-26T09:30:19.723297&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:19.682825&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(train.isnull().<span class="bu">sum</span>())</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(test.isnull().<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -499,13 +491,13 @@ Embarked         0
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:19.895391Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:19.893003Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:19.898730Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:19.898109Z&quot;}" data-papermill="{&quot;duration&quot;:0.040532,&quot;end_time&quot;:&quot;2021-03-26T09:30:19.898885&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:19.858353&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="6">
+<div id="cell-5" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:19.895391Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:19.893003Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:19.898730Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:19.898109Z&quot;}" data-papermill="{&quot;duration&quot;:0.040532,&quot;end_time&quot;:&quot;2021-03-26T09:30:19.898885&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:19.858353&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>train[<span class="st">"Age"</span>]<span class="op">=</span>train[<span class="st">"Age"</span>].fillna(train[<span class="st">"Age"</span>].median())</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>test[<span class="st">"Age"</span>]<span class="op">=</span>test[<span class="st">"Age"</span>].fillna(test[<span class="st">"Age"</span>].median())</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>test[<span class="st">"Fare"</span>]<span class="op">=</span>test[<span class="st">"Fare"</span>].fillna(test[<span class="st">"Fare"</span>].median())</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>train[<span class="st">"Embarked"</span>]<span class="op">=</span>train[<span class="st">"Embarked"</span>].fillna(<span class="st">"S"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-6" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:19.962049Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:19.961301Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:19.965640Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:19.964676Z&quot;}" data-papermill="{&quot;duration&quot;:0.040853,&quot;end_time&quot;:&quot;2021-03-26T09:30:19.965866&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:19.925013&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="7">
+<div id="cell-6" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:19.962049Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:19.961301Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:19.965640Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:19.964676Z&quot;}" data-papermill="{&quot;duration&quot;:0.040853,&quot;end_time&quot;:&quot;2021-03-26T09:30:19.965866&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:19.925013&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(train.isnull().<span class="bu">sum</span>())</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(test.isnull().<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -536,14 +528,13 @@ Embarked         0
 dtype: int64</code></pre>
 </div>
 </div>
-<p>maleを0 femaleを1にする</p>
-<div id="cell-8" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:20.149421Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:20.148684Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:20.152776Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:20.152198Z&quot;}" data-papermill="{&quot;duration&quot;:0.050348,&quot;end_time&quot;:&quot;2021-03-26T09:30:20.152927&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:20.102579&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="8">
+<div id="cell-7" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:20.149421Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:20.148684Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:20.152776Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:20.152198Z&quot;}" data-papermill="{&quot;duration&quot;:0.050348,&quot;end_time&quot;:&quot;2021-03-26T09:30:20.152927&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:20.102579&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>train[<span class="st">"Sex"</span>][train[<span class="st">"Sex"</span>] <span class="op">==</span> <span class="st">"male"</span>] <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>train[<span class="st">"Sex"</span>][train[<span class="st">"Sex"</span>] <span class="op">==</span> <span class="st">"female"</span>] <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>test[<span class="st">"Sex"</span>][test[<span class="st">"Sex"</span>] <span class="op">==</span> <span class="st">"male"</span>] <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>test[<span class="st">"Sex"</span>][test[<span class="st">"Sex"</span>] <span class="op">==</span> <span class="st">"female"</span>] <span class="op">=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\97970295.py:1: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
+<pre><code>C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\97970295.py:1: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
 You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
 A typical example is when you are setting values in a column of a DataFrame, like:
 
@@ -554,12 +545,12 @@ Use `df.loc[row_indexer, "col"] = values` instead, to perform the assignment in 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
 
   train["Sex"][train["Sex"] == "male"] = 0
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\97970295.py:1: SettingWithCopyWarning: 
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\97970295.py:1: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   train["Sex"][train["Sex"] == "male"] = 0
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\97970295.py:2: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\97970295.py:2: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
 You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
 A typical example is when you are setting values in a column of a DataFrame, like:
 
@@ -570,12 +561,12 @@ Use `df.loc[row_indexer, "col"] = values` instead, to perform the assignment in 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
 
   train["Sex"][train["Sex"] == "female"] = 1
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\97970295.py:2: SettingWithCopyWarning: 
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\97970295.py:2: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   train["Sex"][train["Sex"] == "female"] = 1
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\97970295.py:3: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\97970295.py:3: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
 You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
 A typical example is when you are setting values in a column of a DataFrame, like:
 
@@ -586,12 +577,12 @@ Use `df.loc[row_indexer, "col"] = values` instead, to perform the assignment in 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
 
   test["Sex"][test["Sex"] == "male"] = 0
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\97970295.py:3: SettingWithCopyWarning: 
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\97970295.py:3: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   test["Sex"][test["Sex"] == "male"] = 0
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\97970295.py:4: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\97970295.py:4: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
 You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
 A typical example is when you are setting values in a column of a DataFrame, like:
 
@@ -602,14 +593,14 @@ Use `df.loc[row_indexer, "col"] = values` instead, to perform the assignment in 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
 
   test["Sex"][test["Sex"] == "female"] = 1
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\97970295.py:4: SettingWithCopyWarning: 
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\97970295.py:4: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   test["Sex"][test["Sex"] == "female"] = 1</code></pre>
 </div>
 </div>
-<div id="cell-9" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:20.285221Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:20.284144Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:20.288168Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:20.288712Z&quot;}" data-papermill="{&quot;duration&quot;:0.055257,&quot;end_time&quot;:&quot;2021-03-26T09:30:20.288896&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:20.233639&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="9">
+<div id="cell-8" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:20.285221Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:20.284144Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:20.288168Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:20.288712Z&quot;}" data-papermill="{&quot;duration&quot;:0.055257,&quot;end_time&quot;:&quot;2021-03-26T09:30:20.288896&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:20.233639&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>train[<span class="st">"Embarked"</span>][train[<span class="st">"Embarked"</span>]<span class="op">==</span> <span class="st">"S"</span>] <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>train[<span class="st">"Embarked"</span>][train[<span class="st">"Embarked"</span>]<span class="op">==</span> <span class="st">"C"</span>] <span class="op">=</span><span class="dv">1</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>train[<span class="st">"Embarked"</span>][train[<span class="st">"Embarked"</span>]<span class="op">==</span> <span class="st">"Q"</span>] <span class="op">=</span><span class="dv">2</span></span>
@@ -617,7 +608,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>test[<span class="st">"Embarked"</span>][test[<span class="st">"Embarked"</span>]<span class="op">==</span> <span class="st">"C"</span>] <span class="op">=</span><span class="dv">1</span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>test[<span class="st">"Embarked"</span>][test[<span class="st">"Embarked"</span>]<span class="op">==</span> <span class="st">"Q"</span>] <span class="op">=</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\1241293558.py:1: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
+<pre><code>C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\1241293558.py:1: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
 You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
 A typical example is when you are setting values in a column of a DataFrame, like:
 
@@ -628,12 +619,12 @@ Use `df.loc[row_indexer, "col"] = values` instead, to perform the assignment in 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
 
   train["Embarked"][train["Embarked"]== "S"] = 0
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\1241293558.py:1: SettingWithCopyWarning: 
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\1241293558.py:1: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   train["Embarked"][train["Embarked"]== "S"] = 0
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\1241293558.py:2: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\1241293558.py:2: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
 You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
 A typical example is when you are setting values in a column of a DataFrame, like:
 
@@ -644,12 +635,12 @@ Use `df.loc[row_indexer, "col"] = values` instead, to perform the assignment in 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
 
   train["Embarked"][train["Embarked"]== "C"] =1
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\1241293558.py:2: SettingWithCopyWarning: 
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\1241293558.py:2: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   train["Embarked"][train["Embarked"]== "C"] =1
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\1241293558.py:3: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\1241293558.py:3: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
 You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
 A typical example is when you are setting values in a column of a DataFrame, like:
 
@@ -660,12 +651,12 @@ Use `df.loc[row_indexer, "col"] = values` instead, to perform the assignment in 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
 
   train["Embarked"][train["Embarked"]== "Q"] =2
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\1241293558.py:3: SettingWithCopyWarning: 
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\1241293558.py:3: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   train["Embarked"][train["Embarked"]== "Q"] =2
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\1241293558.py:4: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\1241293558.py:4: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
 You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
 A typical example is when you are setting values in a column of a DataFrame, like:
 
@@ -676,12 +667,12 @@ Use `df.loc[row_indexer, "col"] = values` instead, to perform the assignment in 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
 
   test["Embarked"][test["Embarked"]== "S"] = 0
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\1241293558.py:4: SettingWithCopyWarning: 
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\1241293558.py:4: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   test["Embarked"][test["Embarked"]== "S"] = 0
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\1241293558.py:5: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\1241293558.py:5: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
 You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
 A typical example is when you are setting values in a column of a DataFrame, like:
 
@@ -692,12 +683,12 @@ Use `df.loc[row_indexer, "col"] = values` instead, to perform the assignment in 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
 
   test["Embarked"][test["Embarked"]== "C"] =1
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\1241293558.py:5: SettingWithCopyWarning: 
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\1241293558.py:5: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   test["Embarked"][test["Embarked"]== "C"] =1
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\1241293558.py:6: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\1241293558.py:6: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
 You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
 A typical example is when you are setting values in a column of a DataFrame, like:
 
@@ -708,14 +699,14 @@ Use `df.loc[row_indexer, "col"] = values` instead, to perform the assignment in 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
 
   test["Embarked"][test["Embarked"]== "Q"] =2
-C:\Users\sigma\AppData\Local\Temp\ipykernel_1632\1241293558.py:6: SettingWithCopyWarning: 
+C:\Users\sigma\AppData\Local\Temp\ipykernel_19968\1241293558.py:6: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   test["Embarked"][test["Embarked"]== "Q"] =2</code></pre>
 </div>
 </div>
-<div id="cell-10" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:20.422092Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:20.420962Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:20.425398Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:20.424748Z&quot;}" data-papermill="{&quot;duration&quot;:0.053732,&quot;end_time&quot;:&quot;2021-03-26T09:30:20.425553&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:20.371821&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="10">
+<div id="cell-9" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:20.422092Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:20.420962Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:20.425398Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:20.424748Z&quot;}" data-papermill="{&quot;duration&quot;:0.053732,&quot;end_time&quot;:&quot;2021-03-26T09:30:20.425553&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:20.371821&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> train.loc[:,[<span class="st">"Survived"</span>]]</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> train.loc[:,[<span class="st">"Sex"</span>,<span class="st">"Age"</span>,<span class="st">"Pclass"</span>,<span class="st">"SibSp"</span>,<span class="st">"Fare"</span>,<span class="st">"Embarked"</span>]]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -749,7 +740,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 [891 rows x 1 columns]</code></pre>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:20.544021Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:20.543300Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:21.727556Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:21.728173Z&quot;}" data-papermill="{&quot;duration&quot;:1.21827,&quot;end_time&quot;:&quot;2021-03-26T09:30:21.728362&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:20.510092&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="11">
+<div id="cell-10" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:20.544021Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:20.543300Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:21.727556Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:21.728173Z&quot;}" data-papermill="{&quot;duration&quot;:1.21827,&quot;end_time&quot;:&quot;2021-03-26T09:30:21.728362&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:20.510092&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>x_train,x_test,y_train,y_test <span class="op">=</span> train_test_split(x,y,test_size<span class="op">=</span><span class="fl">0.3</span>,shuffle<span class="op">=</span><span class="va">True</span>,random_state<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_train,y_train)</span>
@@ -811,13 +802,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 [268 rows x 1 columns]</code></pre>
 </div>
 </div>
-<div id="cell-12" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:21.850823Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:21.850119Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:21.852547Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:21.853049Z&quot;}" data-papermill="{&quot;duration&quot;:0.038919,&quot;end_time&quot;:&quot;2021-03-26T09:30:21.853248&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:21.814329&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="12">
+<div id="cell-11" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:21.850823Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:21.850119Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:21.852547Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:21.853049Z&quot;}" data-papermill="{&quot;duration&quot;:0.038919,&quot;end_time&quot;:&quot;2021-03-26T09:30:21.853248&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:21.814329&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x_train <span class="op">=</span> x_train.astype(<span class="st">"float32"</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> y_train.astype(<span class="st">"float32"</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>x_test <span class="op">=</span> x_test.astype(<span class="st">"float32"</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> y_test.astype(<span class="st">"float32"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-13" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:21.974177Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:21.972989Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:21.982733Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:21.981711Z&quot;}" data-papermill="{&quot;duration&quot;:0.043242,&quot;end_time&quot;:&quot;2021-03-26T09:30:21.982921&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:21.939679&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="13">
+<div id="cell-12" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:21.974177Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:21.972989Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:21.982733Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:21.981711Z&quot;}" data-papermill="{&quot;duration&quot;:0.043242,&quot;end_time&quot;:&quot;2021-03-26T09:30:21.982921&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:21.939679&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {<span class="st">"objective"</span>: [<span class="st">"binary:logistic"</span>],</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">"n_estimators"</span>:[<span class="dv">50000</span>],</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">"booster"</span>:[<span class="st">"gbtree"</span>],</span>
@@ -830,23 +821,23 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>          <span class="st">"alpha"</span>:[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>],</span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>          <span class="st">"lambda"</span>:[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-14" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:22.108119Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:22.107413Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:22.518352Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:22.518948Z&quot;}" data-papermill="{&quot;duration&quot;:0.445757,&quot;end_time&quot;:&quot;2021-03-26T09:30:22.519139&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:22.073382&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="14">
+<div id="cell-13" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:22.108119Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:22.107413Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:22.518352Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:22.518948Z&quot;}" data-papermill="{&quot;duration&quot;:0.445757,&quot;end_time&quot;:&quot;2021-03-26T09:30:22.519139&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:22.073382&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> RandomizedSearchCV</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xgboost <span class="im">as</span> xgb</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> xgb.XGBClassifier()</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>clf_grid <span class="op">=</span> RandomizedSearchCV(clf,params,cv<span class="op">=</span><span class="dv">5</span>,n_iter<span class="op">=</span><span class="dv">50</span>,random_state<span class="op">=</span><span class="dv">0</span>,scoring<span class="op">=</span><span class="st">"accuracy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-15" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:22.643569Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:22.642826Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:22.646429Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:22.645737Z&quot;}" data-papermill="{&quot;duration&quot;:0.037246,&quot;end_time&quot;:&quot;2021-03-26T09:30:22.646574&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:22.609328&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="15">
+<div id="cell-14" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:22.643569Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:22.642826Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:22.646429Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:22.645737Z&quot;}" data-papermill="{&quot;duration&quot;:0.037246,&quot;end_time&quot;:&quot;2021-03-26T09:30:22.646574&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:22.609328&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-16" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:22.774482Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:22.769954Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:30.869533Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:30.870133Z&quot;}" data-papermill="{&quot;duration&quot;:8.136006,&quot;end_time&quot;:&quot;2021-03-26T09:30:30.870316&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:22.734310&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="16">
+<div id="cell-15" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:22.774482Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:22.769954Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:30.869533Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:30.870133Z&quot;}" data-papermill="{&quot;duration&quot;:8.136006,&quot;end_time&quot;:&quot;2021-03-26T09:30:30.870316&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:22.734310&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>clf_grid.fit(x_train,y_train,</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>        early_stopping_rounds<span class="op">=</span><span class="dv">50</span>,</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        eval_set <span class="op">=</span> [(x_test,y_test)],</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>        eval_metric <span class="op">=</span> <span class="st">"error"</span>,</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        verbose <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: black;
@@ -1332,7 +1323,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
               num_parallel_tree=None, random_state=None, ...)</pre></div> </div></div></div></div></div></div></div></div></div>
 </div>
 </div>
-<div id="cell-17" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:30.992145Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:30.991091Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:30.998447Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:30.997764Z&quot;}" data-papermill="{&quot;duration&quot;:0.040038,&quot;end_time&quot;:&quot;2021-03-26T09:30:30.998620&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:30.958582&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="17">
+<div id="cell-16" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:30.992145Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:30.991091Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:30.998447Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:30.997764Z&quot;}" data-papermill="{&quot;duration&quot;:0.040038,&quot;end_time&quot;:&quot;2021-03-26T09:30:30.998620&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:30.958582&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score,confusion_matrix</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(clf_grid.best_params_)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(clf_grid.best_score_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1341,7 +1332,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 0.7912</code></pre>
 </div>
 </div>
-<div id="cell-18" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:31.064440Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:31.063681Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:31.070610Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:31.071136Z&quot;}" data-papermill="{&quot;duration&quot;:0.042545,&quot;end_time&quot;:&quot;2021-03-26T09:30:31.071326&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:31.028781&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="18">
+<div id="cell-17" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:31.064440Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:31.063681Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:31.070610Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:31.071136Z&quot;}" data-papermill="{&quot;duration&quot;:0.042545,&quot;end_time&quot;:&quot;2021-03-26T09:30:31.071326&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:31.028781&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>bst <span class="op">=</span> clf_grid.best_estimator_</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1358,7 +1349,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
               n_estimators=50000, ...)</code></pre>
 </div>
 </div>
-<div id="cell-19" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:31.200582Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:31.199817Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:31.208761Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:31.210104Z&quot;}" data-papermill="{&quot;duration&quot;:0.047138,&quot;end_time&quot;:&quot;2021-03-26T09:30:31.210368&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:31.163230&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="19">
+<div id="cell-18" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:31.200582Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:31.199817Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:31.208761Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:31.210104Z&quot;}" data-papermill="{&quot;duration&quot;:0.047138,&quot;end_time&quot;:&quot;2021-03-26T09:30:31.210368&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:31.163230&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pred_1 <span class="op">=</span> bst.predict(x_test)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>grid_score<span class="op">=</span> accuracy_score(y_test,pred_1)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grid_score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1366,14 +1357,14 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <pre><code>0.7985074626865671</code></pre>
 </div>
 </div>
-<div id="cell-20" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:31.342896Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:31.342169Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:31.347721Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:31.348283Z&quot;}" data-papermill="{&quot;duration&quot;:0.04216,&quot;end_time&quot;:&quot;2021-03-26T09:30:31.348458&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:31.306298&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="20">
+<div id="cell-19" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:31.342896Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:31.342169Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:31.347721Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:31.348283Z&quot;}" data-papermill="{&quot;duration&quot;:0.04216,&quot;end_time&quot;:&quot;2021-03-26T09:30:31.348458&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:31.306298&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>confusion_matrix(y_test,pred_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>array([[167,   1],
        [ 53,  47]], dtype=int64)</code></pre>
 </div>
 </div>
-<div id="cell-21" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:31.480801Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:31.479834Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:32.083749Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:32.083000Z&quot;}" data-papermill="{&quot;duration&quot;:0.641286,&quot;end_time&quot;:&quot;2021-03-26T09:30:32.083922&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:31.442636&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="21">
+<div id="cell-20" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:31.480801Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:31.479834Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:32.083749Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:32.083000Z&quot;}" data-papermill="{&quot;duration&quot;:0.641286,&quot;end_time&quot;:&quot;2021-03-26T09:30:32.083922&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:31.442636&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphviz</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image, display_png</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> xgb.to_graphviz(bst)</span>
@@ -1388,7 +1379,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 </div>
-<div id="cell-22" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:32.230067Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:32.228984Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:32.481813Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:32.481243Z&quot;}" data-papermill="{&quot;duration&quot;:0.295051,&quot;end_time&quot;:&quot;2021-03-26T09:30:32.481973&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:32.186922&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="22">
+<div id="cell-21" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:32.230067Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:32.228984Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:32.481813Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:32.481243Z&quot;}" data-papermill="{&quot;duration&quot;:0.295051,&quot;end_time&quot;:&quot;2021-03-26T09:30:32.481973&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:32.186922&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_feature_importances(model):</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    n_features <span class="op">=</span> x.shape[<span class="dv">1</span>]</span>
@@ -1407,7 +1398,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 </div>
-<div id="cell-23" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:32.632574Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:32.631808Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:32.645706Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:32.646598Z&quot;}" data-papermill="{&quot;duration&quot;:0.059538,&quot;end_time&quot;:&quot;2021-03-26T09:30:32.646832&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:32.587294&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="23">
+<div id="cell-22" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:32.632574Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:32.631808Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:32.645706Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:32.646598Z&quot;}" data-papermill="{&quot;duration&quot;:0.059538,&quot;end_time&quot;:&quot;2021-03-26T09:30:32.646832&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:32.587294&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span> test.loc[:,[<span class="st">"Sex"</span>,<span class="st">"Age"</span>,<span class="st">"Pclass"</span>,<span class="st">"SibSp"</span>,<span class="st">"Fare"</span>,<span class="st">"Embarked"</span>]]</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X.astype(<span class="st">"float32"</span>)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>Y<span class="op">=</span> bst.predict(X)</span>
@@ -1428,7 +1419,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
  0 0 0 0 1 0 0 1 0 0 0]</code></pre>
 </div>
 </div>
-<div id="cell-24" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:32.801991Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:32.801086Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:32.804987Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:32.805533Z&quot;}" data-papermill="{&quot;duration&quot;:0.050286,&quot;end_time&quot;:&quot;2021-03-26T09:30:32.805749&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:32.755463&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="24">
+<div id="cell-23" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:32.801991Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:32.801086Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:32.804987Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:32.805533Z&quot;}" data-papermill="{&quot;duration&quot;:0.050286,&quot;end_time&quot;:&quot;2021-03-26T09:30:32.805749&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:32.755463&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>PassengerId <span class="op">=</span> np.array(test[<span class="st">"PassengerId"</span>]).astype(<span class="bu">int</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> pd.DataFrame(Y,PassengerId,columns <span class="op">=</span> [<span class="st">"Survived"</span>])</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1449,7 +1440,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 [418 rows x 1 columns]</code></pre>
 </div>
 </div>
-<div id="cell-25" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:32.880501Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:32.879776Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:32.890035Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:32.889314Z&quot;}" data-papermill="{&quot;duration&quot;:0.048732,&quot;end_time&quot;:&quot;2021-03-26T09:30:32.890190&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:32.841458&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="25">
+<div id="cell-24" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2021-03-26T09:30:32.880501Z&quot;,&quot;iopub.status.busy&quot;:&quot;2021-03-26T09:30:32.879776Z&quot;,&quot;iopub.status.idle&quot;:&quot;2021-03-26T09:30:32.890035Z&quot;,&quot;shell.execute_reply&quot;:&quot;2021-03-26T09:30:32.889314Z&quot;}" data-papermill="{&quot;duration&quot;:0.048732,&quot;end_time&quot;:&quot;2021-03-26T09:30:32.890190&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2021-03-26T09:30:32.841458&quot;,&quot;status&quot;:&quot;completed&quot;}" data-tags="[]" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>result.to_csv(<span class="st">"my_submission.csv"</span>,index_label <span class="op">=</span> [<span class="st">"PassengerId"</span>])</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Your submission was successfully saved!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1458,7 +1449,6 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
